@@ -1,0 +1,9 @@
+Coloque aqui as fotos e imagens animadas da Poison Donuts.
+
+Formatos aceitos: .webp, .jpg, .png, .avif, .gif (animado), .mp4 e .webm (vídeo curto, sem som).
+Depois, informe o caminho no arquivo src/config/site.ts, por exemplo:
+
+  image: '/images/kinder-bueno.webp'
+
+Dicas: use fotos quadradas (1:1) ou 4:3 para o cardápio, com no máximo ~300 KB cada.
+Para animações, prefira .mp4/.webm (muito mais leves que .gif).
