@@ -1,18 +1,17 @@
-import { integrations, products } from '../config/site';
+import { integrations, links, products } from '../config/site';
 import { scrollToId } from '../lib/scroll';
 import { whatsappUrl } from '../lib/whatsapp';
 import { Donut } from './Donut';
-import { IconArrow, IconWhatsApp } from './Icons';
-import { usePedirAgora } from './Navbar';
+import { IconPin, IconWhatsApp } from './Icons';
 
-const steps = [
-  { n: '01', title: 'Escolha', text: 'Navegue pelo cardápio e adicione seus sabores.' },
-  { n: '02', title: 'Envie', text: 'Finalize e mande o pedido pronto pelo WhatsApp.' },
-  { n: '03', title: 'Receba', text: 'Delivery até você ou retirada no Barra Shopping.' },
+const ways = [
+  { icon: '🏬', title: 'Na loja', text: 'Venha ao Barra Shopping escolher seus sabores no balcão e aproveitar na hora.' },
+  { icon: '🛍️', title: 'Para levar', text: 'Leve seus donuts favoritos para casa, para o trabalho ou para presentear alguém.' },
+  { icon: '🚀', title: 'Delivery', text: 'A experiência Poison Donuts também chega até você, onde estiver.' },
+  { icon: '🎉', title: 'Eventos e encomendas', text: 'Donuts para festas, empresas e datas especiais.' },
 ];
 
 export function Delivery() {
-  const pedir = usePedirAgora();
   const platforms = integrations.deliveryPlatforms.filter((p) => p.enabled && p.url);
   const art = products.find((p) => p.id === 'ferrero-rocher')!.art;
 
@@ -21,17 +20,20 @@ export function Delivery() {
       <div className="container">
         <div className="delivery__card" data-reveal>
           <div className="delivery__copy">
-            <p className="eyebrow">Delivery</p>
+            <p className="eyebrow">Delivery e muito mais</p>
             <h2 id="delivery-title" className="section-title">Seu donut favorito na sua porta <span aria-hidden="true">🚀</span></h2>
-            <p className="section-lead">Escolha seus sabores favoritos, monte seu pedido e receba a experiência Poison Donuts onde estiver.</p>
-            <ol className="steps">
-              {steps.map((s) => (
-                <li key={s.n}><span className="steps__n">{s.n}</span><div><strong>{s.title}</strong><p>{s.text}</p></div></li>
+            <p className="section-lead">Na loja, para levar ou em casa: a Poison Donuts tem um jeito para cada momento.</p>
+            <ul className="ways">
+              {ways.map((w) => (
+                <li key={w.title}>
+                  <span className="ways__icon" aria-hidden="true">{w.icon}</span>
+                  <div><strong>{w.title}</strong><p>{w.text}</p></div>
+                </li>
               ))}
-            </ol>
+            </ul>
             <div className="delivery__ctas">
-              <button className="btn btn--primary btn--lg" onClick={pedir}>Pedir delivery <IconArrow /></button>
-              <button className="btn btn--ghost btn--lg" onClick={() => scrollToId('cardapio')}>Ver cardápio</button>
+              <a className="btn btn--primary btn--lg" href={links.googleMaps} target="_blank" rel="noopener noreferrer"><IconPin width={20} height={20} /> Como chegar</a>
+              <button className="btn btn--ghost btn--lg" onClick={() => scrollToId('cardapio')}>Ver sabores</button>
             </div>
             <div className="platforms">
               {platforms.length > 0 ? (
@@ -42,8 +44,8 @@ export function Delivery() {
                   ))}
                 </>
               ) : (
-                <a className="chip-link chip-link--wa" href={whatsappUrl('Olá, Poison Donuts! Vocês entregam no meu endereço?')} target="_blank" rel="noopener noreferrer">
-                  <IconWhatsApp width={18} height={18} /> Consultar área de entrega
+                <a className="chip-link chip-link--wa" href={whatsappUrl('Olá, Poison Donuts! Como funciona o delivery de vocês?')} target="_blank" rel="noopener noreferrer">
+                  <IconWhatsApp width={18} height={18} /> Saiba como funciona o delivery
                 </a>
               )}
             </div>

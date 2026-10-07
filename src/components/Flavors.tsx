@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import { products } from '../config/site';
-import { formatPrice } from '../lib/format';
+import { useProductDialog } from '../context/ProductDialogContext';
 import { Media } from './Media';
-import { AddButton } from './ProductCard';
 
 const groups = {
-  hot: { label: '🔥 Mais pedidos', items: products.filter((p) => p.bestSeller) },
+  hot: { label: '⭐ Favoritos', items: products.filter((p) => p.bestSeller) },
   new: { label: '✨ Novidades', items: products.filter((p) => p.isNew) },
 };
 
@@ -13,6 +12,7 @@ export function Flavors() {
   const [group, setGroup] = useState<keyof typeof groups>('hot');
   const items = groups[group].items;
   const [index, setIndex] = useState(0);
+  const dialog = useProductDialog();
   const current = items[Math.min(index, items.length - 1)];
 
   const switchGroup = (g: keyof typeof groups) => { setGroup(g); setIndex(0); };
@@ -47,10 +47,7 @@ export function Flavors() {
               <h3 className="spotlight__name">{current.name}</h3>
               <p className="spotlight__desc">{current.description}</p>
               <ul className="chips">{current.ingredients.map((i) => <li key={i}>{i}</li>)}</ul>
-              <div className="spotlight__buy">
-                <span className={`price price--lg ${current.price === null ? 'price--ask' : ''}`}>{formatPrice(current.price)}</span>
-                <AddButton product={current} />
-              </div>
+              <button className="btn btn--ghost" onClick={() => dialog.show(current)}>Ver detalhes</button>
             </div>
             <div className="spotlight__thumbs" role="tablist" aria-label="Escolher sabor">
               {items.map((p, i) => (

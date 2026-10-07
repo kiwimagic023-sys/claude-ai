@@ -1,21 +1,13 @@
 import { useEffect, useState } from 'react';
-import { navItems } from '../config/site';
-import { useCart } from '../context/CartContext';
+import { navItems, store } from '../config/site';
 import { scrollToId } from '../lib/scroll';
-import { IconCart, IconClose, IconMenu } from './Icons';
+import { IconClose, IconMenu, IconPhone, IconPin } from './Icons';
 import { Logo } from './Logo';
-
-export const usePedirAgora = () => {
-  const cart = useCart();
-  return () => (cart.count > 0 ? cart.open() : scrollToId('cardapio'));
-};
 
 export function Navbar({ path }: { path: string }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [active, setActive] = useState(path === '/' ? 'inicio' : path.slice(1));
-  const cart = useCart();
-  const pedir = usePedirAgora();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -66,11 +58,8 @@ export function Navbar({ path }: { path: string }) {
         </nav>
 
         <div className="nav__actions">
-          <button className="icon-btn nav__cart" onClick={cart.open} aria-label={`Abrir carrinho, ${cart.count} ${cart.count === 1 ? 'item' : 'itens'}`}>
-            <IconCart />
-            {cart.count > 0 && <span key={cart.bump} className="badge badge--bump">{cart.count}</span>}
-          </button>
-          <button className="btn btn--primary btn--sm nav__cta" onClick={pedir}>Pedir agora</button>
+          <a className="icon-btn nav__call" href={`tel:+${store.phoneE164}`} aria-label={`Ligar para a loja: ${store.phoneDisplay}`}><IconPhone width={20} height={20} /></a>
+          <button className="btn btn--primary btn--sm nav__cta" onClick={() => scrollToId('localizacao')}><IconPin width={18} height={18} /> Como chegar</button>
           <button className="icon-btn nav__burger" onClick={() => setMenuOpen((o) => !o)} aria-expanded={menuOpen} aria-controls="mobile-menu" aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'}>
             {menuOpen ? <IconClose /> : <IconMenu />}
           </button>
@@ -85,7 +74,10 @@ export function Navbar({ path }: { path: string }) {
             </a>
           ))}
         </nav>
-        <button className="btn btn--primary btn--lg btn--block" onClick={() => { setMenuOpen(false); pedir(); }}>Pedir agora</button>
+        <div className="mobile-menu__ctas">
+          <a className="btn btn--ghost btn--lg btn--block" href={`tel:+${store.phoneE164}`}><IconPhone /> Ligar {store.phoneDisplay}</a>
+          <button className="btn btn--primary btn--lg btn--block" onClick={() => { setMenuOpen(false); scrollToId('localizacao'); }}><IconPin /> Como chegar</button>
+        </div>
       </div>
     </header>
   );

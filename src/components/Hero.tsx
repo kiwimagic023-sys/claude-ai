@@ -2,11 +2,9 @@ import { useEffect, useRef, useState } from 'react';
 import { brandLogo, heroVideo, products, store } from '../config/site';
 import { scrollToId } from '../lib/scroll';
 import { Donut } from './Donut';
-import { IconArrow, IconStar } from './Icons';
-import { usePedirAgora } from './Navbar';
+import { IconArrow, IconPhone, IconStar } from './Icons';
 import { Starfield } from './Starfield';
-
-const reducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+import { prefersReducedMotion as reducedMotion, useScrollProgress } from '../hooks/useScrollProgress';
 
 const flyers = ['simpson', 'kinder-bueno', 'oreo'].map((id) => products.find((p) => p.id === id)!);
 const taglines = ['Donuts gigantes.', 'Recheios irresistíveis.', 'Sabores de outra galáxia.'];
@@ -14,14 +12,13 @@ const taglines = ['Donuts gigantes.', 'Recheios irresistíveis.', 'Sabores de ou
 export function Hero() {
   const section = useRef<HTMLElement>(null);
   const video = useRef<HTMLVideoElement>(null);
-  const pedir = usePedirAgora();
   // versão mais leve do vídeo no celular
   const [sources] = useState(() => (window.matchMedia('(max-width: 767px)').matches ? heroVideo.mobile : heroVideo.desktop));
   const [playing, setPlaying] = useState(() => !reducedMotion());
   // estrelas animadas só em telas grandes (no celular o vídeo já dá movimento e economiza bateria)
   const [stars] = useState(() => window.matchMedia('(min-width: 768px)').matches);
   // animação ligada à rolagem (desligada para quem pediu "reduzir movimento")
-  const [scrolly] = useState(() => !reducedMotion());
+  const scrolly = useScrollProgress(section, (p) => { if (section.current) section.current.dataset.past = String(p > 0.35); });
 
   useEffect(() => {
     const v = video.current;
@@ -41,29 +38,6 @@ export function Hero() {
     io.observe(v);
     return () => io.disconnect();
   }, [playing]);
-
-  // progresso da rolagem dentro da capa (0 = topo, 1 = fim da animação) na variável CSS --p
-  useEffect(() => {
-    const el = section.current;
-    if (!el || !scrolly) return;
-    let raf = 0;
-    const update = () => {
-      raf = 0;
-      const range = el.offsetHeight - window.innerHeight;
-      const p = range > 0 ? Math.min(1, Math.max(0, -el.getBoundingClientRect().top / range)) : 0;
-      el.style.setProperty('--p', p.toFixed(4));
-      el.dataset.past = String(p > 0.35);
-    };
-    const schedule = () => { if (!raf) raf = requestAnimationFrame(update); };
-    update();
-    window.addEventListener('scroll', schedule, { passive: true });
-    window.addEventListener('resize', schedule);
-    return () => {
-      window.removeEventListener('scroll', schedule);
-      window.removeEventListener('resize', schedule);
-      cancelAnimationFrame(raf);
-    };
-  }, [scrolly]);
 
   return (
     <section id="inicio" ref={section} className={`hero ${scrolly ? 'hero--scrolly' : ''}`} aria-labelledby="hero-title">
@@ -110,10 +84,11 @@ export function Hero() {
             <p className="hero__slogan">Os melhores donuts da galáxia</p>
             <p className="hero__lead">Donuts gigantes, recheios irresistíveis e sabores para deixar qualquer momento muito mais gostoso.</p>
             <div className="hero__ctas">
-              <button className="btn btn--primary btn--lg" onClick={pedir}>
-                Pedir agora <IconArrow />
+              <button className="btn btn--primary btn--lg" onClick={() => scrollToId('sabores')}>
+                Conheça os sabores <IconArrow />
               </button>
-              <button className="btn btn--ghost btn--lg" onClick={() => scrollToId('cardapio')}>Ver cardápio</button>
+              <button className="btn btn--ghost btn--lg" onClick={() => scrollToId('localizacao')}>Como chegar</button>
+              <a className="btn btn--ghost btn--lg" href={`tel:+${store.phoneE164}`}><IconPhone width={20} height={20} /> Ligar</a>
             </div>
             <ul className="hero__stats" aria-label="Destaques">
               <li><IconStar className="star" width={18} height={18} /> <strong>{store.rating.toLocaleString('pt-BR')}</strong> <span>· {store.ratingCountLabel}</span></li>

@@ -2,7 +2,7 @@ import { memo, useId, type ReactElement } from 'react';
 import type { DonutArt } from '../config/site';
 
 /** gerador pseudo-aleatório determinístico: o mesmo `seed` sempre desenha o mesmo donut */
-const rng = (seed: string) => {
+export const rng = (seed: string) => {
   let h = 2166136261;
   for (let i = 0; i < seed.length; i++) h = Math.imul(h ^ seed.charCodeAt(i), 16777619);
   return () => {
@@ -18,7 +18,7 @@ const C = 100;
 const polar = (r: number, a: number): [number, number] => [C + r * Math.cos(a), C + r * Math.sin(a)];
 
 /** contorno ondulado fechado (cobertura com "pingos") */
-const wavyRing = (base: number, amp: number, rand: () => number, steps = 72, drips = true) => {
+export const wavyRing = (base: number, amp: number, rand: () => number, steps = 72, drips = true) => {
   const phase = rand() * Math.PI * 2;
   let radii = Array.from({ length: steps }, (_, i) => {
     const a = (i / steps) * Math.PI * 2;

@@ -2,6 +2,8 @@ import type { DonutArt, MediaSource } from '../config/site';
 import { Donut } from './Donut';
 
 const isVideo = (src: string) => /\.(mp4|webm|mov)$/i.test(src);
+/** donuts recortados (fundo transparente) ficam em /images/donuts/ e aparecem "flutuando" */
+const isCutout = (src: string) => src.includes('/images/donuts/');
 
 interface Props {
   src?: MediaSource;
@@ -30,7 +32,8 @@ export function Media({ src, art, seed, alt, className, eager }: Props) {
     return <video className={className} src={src} autoPlay muted loop playsInline preload={eager ? 'auto' : 'metadata'} aria-label={alt} />;
   }
   if (src) {
-    return <img className={className} src={src} alt={alt} loading={eager ? 'eager' : 'lazy'} decoding="async" />;
+    const cls = [className, isCutout(src) && 'media--cutout'].filter(Boolean).join(' ');
+    return <img className={cls} src={src} alt={alt} loading={eager ? 'eager' : 'lazy'} decoding="async" />;
   }
   return <Donut art={art ?? { glaze: '#ff2fb3', topping: 'sprinkles' }} seed={seed} title={alt} className={className} />;
 }

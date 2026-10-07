@@ -1,6 +1,8 @@
 # Poison Donuts — site oficial
 
-Site da **Poison Donuts** (Barra Shopping, Barra da Tijuca, RJ): os melhores donuts da galáxia.
+Site institucional da **Poison Donuts** (Barra Shopping, Barra da Tijuca, RJ): os melhores donuts da galáxia.
+Ele apresenta a loja (sabores, como os donuts são feitos, eventos, avaliações e localização). Não é uma loja virtual:
+não há carrinho, preços nem pagamento. O contato é por telefone, WhatsApp ou na própria loja.
 
 Feito com **React + TypeScript + Vite** e CSS próprio, sem bibliotecas pesadas. As fontes (Unbounded e Plus Jakarta Sans)
 são hospedadas no próprio site, sem chamadas ao Google Fonts.
@@ -32,7 +34,7 @@ e os arquivos que fazem esses endereços funcionarem já estão incluídos:
 | `/privacidade` | Política de privacidade (LGPD) |
 | qualquer outro | Página 404 |
 
-Clicar em um produto abre os detalhes (foto grande, ingredientes e sugestões).
+Clicar em um sabor abre os detalhes (foto grande, ingredientes e sugestões).
 
 ## Onde editar as informações
 
@@ -45,14 +47,14 @@ Tudo fica em **`src/config/site.ts`**:
 | Vídeo em tela cheia da abertura | `heroVideo` (arquivos em `public/videos/`) |
 | Fotos (Sobre nós, galeria, Instagram) | `photos`, `aboutImages` |
 | Horários (o indicador "Aberto/Fechado" usa estes dados) | `hours` |
-| Produtos, preços, descrições, ingredientes, selos | `products` |
+| Produtos, descrições, ingredientes, selos | `products` |
+| Donuts recortados (sem fundo) usados nas animações | `donutCutouts`, `showcase` |
 | Categorias do cardápio | `categories` |
 | Galeria e posts do Instagram | `gallery`, `instagramPosts` |
 | Avaliações reais de clientes | `reviews` |
 | Pagamento online, formulário de eventos, iFood/Rappi | `integrations` |
 
-- **Preço:** `price: null` mostra "Consulte". Para exibir um valor, use por exemplo `price: 24.9`.
-- **Selos:** `bestSeller: true` = "Mais pedidos"; `isNew: true` = "Novidade".
+- **Selos:** `bestSeller: true` = "Favorito"; `isNew: true` = "Novidade".
 - **Avaliações:** inclua apenas avaliações reais. Com a lista vazia, o site mostra a nota geral (4,7) e o link para o Google.
 
 ## Como colocar as imagens
@@ -75,12 +77,23 @@ ffmpeg -i video.mp4 -an -c:v libvpx-vp9 -b:v 0 -crf 38 -vf scale=720:-2  public/
 ffmpeg -ss 1.6 -i video.mp4 -frames:v 1 -vf scale=720:-2 public/videos/hero-poster.jpg
 ```
 
-## Pedidos
+## Contato e formulários
 
-- O carrinho guarda os itens no navegador do cliente.
-- **Finalizar pedido** pede nome, retirada ou delivery, endereço e observações, e abre o WhatsApp com a mensagem pronta (itens, quantidades, preços e total).
-- Não há pagamento online. Quando houver, informe a URL em `integrations.checkoutUrl`.
-- O formulário de eventos envia pelo WhatsApp. Para receber por e-mail ou sistema, informe um endpoint (ex.: Formspree) em `integrations.eventFormEndpoint`.
+- Botões **Ligar** (menu, capa, barra do celular e localização) usam o telefone de `store.phoneE164`.
+- O formulário de eventos envia a solicitação pelo WhatsApp. Para receber por e-mail ou sistema, informe um endpoint (ex.: Formspree) em `integrations.eventFormEndpoint`.
+
+## Animações com a rolagem
+
+- **Capa:** vídeo em tela cheia que vira um cartão, com donuts voando e frases aparecendo.
+- **Nossos donuts de verdade:** os donuts recortados se abrem em leque (no celular, em grade 2×2).
+- **Como é feito:** um donut é montado etapa por etapa (massa, descanso, fritura, cobertura, recheio e decoração).
+
+Para quem ativou "reduzir movimento" no aparelho, as animações ficam desligadas e o conteúdo aparece parado.
+
+### Recortar novas fotos
+
+Fotos de donuts sem fundo ficam em `public/images/donuts/` (WebP com transparência) e aparecem "flutuando" automaticamente.
+O recorte pode ser feito com qualquer removedor de fundo (por exemplo, a ferramenta `rembg`).
 
 Nunca coloque chaves secretas no código: tudo neste projeto é público no navegador.
 
@@ -89,8 +102,10 @@ Nunca coloque chaves secretas no código: tudo neste projeto é público no nave
 ```
 src/
   config/site.ts        ← configuração central
-  components/           ← Navbar, Hero, Menu, ProductCard, Cart, Events, Gallery, Reviews, Location, Footer, WhatsAppButton…
-  context/CartContext   ← estado do carrinho
+  components/           ← Navbar, Hero, Showcase, HowItsMade, Menu, ProductCard, Events, Gallery, Reviews, Location, Footer…
+  context/              ← janela de detalhes do sabor
+  hooks/                ← animações com a rolagem, modais, revelação ao rolar
+  pages/                ← páginas: início, cardápio, privacidade, 404
   lib/                  ← WhatsApp, horários, formatação
   styles/global.css     ← design system (cores, animações, responsividade)
 public/                 ← favicon, imagem de compartilhamento, robots, sitemap, imagens

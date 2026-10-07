@@ -19,7 +19,7 @@ export function Menu() {
         <header className="section-head" data-reveal>
           <p className="eyebrow">Cardápio</p>
           <h2 id="menu-title" className="section-title">Escolha seu <span className="text-gradient">planeta</span> favorito</h2>
-          <p className="section-lead">Monte seu pedido e finalize pelo WhatsApp em poucos toques. Preços e disponibilidade podem variar: confirme com a loja.</p>
+          <p className="section-lead">Conheça os sabores da casa. Toque em um donut para ver os detalhes. Os sabores disponíveis podem variar a cada dia.</p>
         </header>
 
         <div className="menu__tabs" role="tablist" aria-label="Categorias do cardápio">

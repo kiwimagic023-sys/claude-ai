@@ -1,40 +1,13 @@
 import type { Product } from '../config/site';
-import { useCart } from '../context/CartContext';
 import { useProductDialog } from '../context/ProductDialogContext';
-import { formatPrice } from '../lib/format';
-import { IconMinus, IconPlus } from './Icons';
 import { Media } from './Media';
-
-export function QtyControl({ id, name }: { id: string; name: string }) {
-  const cart = useCart();
-  const qty = cart.lines.find((l) => l.product.id === id)?.qty ?? 0;
-  return (
-    <div className="qty" role="group" aria-label={`Quantidade de ${name}`}>
-      <button className="qty__btn" onClick={() => cart.dec(id)} aria-label={`Diminuir ${name}`}><IconMinus width={18} height={18} /></button>
-      <span className="qty__value" aria-live="polite">{qty}</span>
-      <button className="qty__btn" onClick={() => cart.inc(id)} aria-label={`Aumentar ${name}`}><IconPlus width={18} height={18} /></button>
-    </div>
-  );
-}
 
 export function ProductBadges({ product }: { product: Product }) {
   return (
     <span className="badges">
-      {product.bestSeller && <span className="tag tag--hot">🔥 Mais pedidos</span>}
+      {product.bestSeller && <span className="tag tag--hot">⭐ Favorito</span>}
       {product.isNew && <span className="tag tag--new">✨ Novidade</span>}
     </span>
-  );
-}
-
-export function AddButton({ product, block = false }: { product: Product; block?: boolean }) {
-  const cart = useCart();
-  const inCart = cart.lines.some((l) => l.product.id === product.id);
-  return inCart ? (
-    <QtyControl id={product.id} name={product.name} />
-  ) : (
-    <button className={`btn btn--primary btn--sm ${block ? 'btn--block' : ''}`} onClick={() => cart.add(product.id)}>
-      <IconPlus width={18} height={18} /> Adicionar ao pedido
-    </button>
   );
 }
 
@@ -50,17 +23,11 @@ export function ProductCard({ product }: { product: Product }) {
         </button>
       </div>
       <div className="product-card__body">
-        <div className="product-card__head">
-          <h3><button className="product-card__title" onClick={() => dialog.show(product)}>{product.name}</button></h3>
-          <span className={`price ${product.price === null ? 'price--ask' : ''}`}>{formatPrice(product.price)}</span>
-        </div>
+        <h3 className="product-card__name"><button className="product-card__title" onClick={() => dialog.show(product)}>{product.name}</button></h3>
         <p className="product-card__desc">{product.description}</p>
         <ul className="chips" aria-label="Ingredientes principais">
           {product.ingredients.map((i) => <li key={i}>{i}</li>)}
         </ul>
-        <div className="product-card__foot">
-          <AddButton product={product} block />
-        </div>
       </div>
     </article>
   );

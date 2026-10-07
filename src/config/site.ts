@@ -11,8 +11,6 @@
  *  Sem `image`, o site mostra uma ilustração de donut gerada
  *  a partir do campo `art`.
  *
- *  PREÇOS: `price: null` mostra "Consulte". Para mostrar um
- *  preço, informe o valor em reais (ex.: price: 24.9).
  * ============================================================
  */
 
@@ -67,8 +65,6 @@ export interface Product {
   category: CategoryId;
   description: string;
   ingredients: string[];
-  /** preço em R$. `null` = "Consulte" */
-  price: number | null;
   image?: string;
   art: DonutArt;
   bestSeller?: boolean;
@@ -148,7 +144,7 @@ export const links = {
     'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('Poison Donuts Barra Shopping'),
 };
 
-export const whatsappDefaultMessage = 'Olá, Poison Donuts! Gostaria de fazer um pedido.';
+export const whatsappDefaultMessage = 'Olá, Poison Donuts! Gostaria de mais informações.';
 
 /** HORÁRIOS — o indicador "Aberto/Fechado" do site usa estes dados. */
 export const hours: DayHours[] = [
@@ -167,8 +163,6 @@ export const timeZone = 'America/Sao_Paulo';
  * Nunca coloque chaves secretas de API aqui: este arquivo vai para o navegador.
  */
 export const integrations = {
-  /** URL de checkout/pagamento online. `null` = pedido finalizado pelo WhatsApp. */
-  checkoutUrl: null as string | null,
   /**
    * Endpoint (seu backend, Formspree, etc.) que recebe o formulário de eventos via POST JSON.
    * `null` = a solicitação é enviada pelo WhatsApp.
@@ -209,8 +203,29 @@ export const photos = {
   edicaoFriends: '/images/edicao-friends.webp',
 };
 
+/** donuts recortados (sem fundo, mão ou texto) — usados no cardápio e nas animações */
+export const donutCutouts = {
+  morangoComCreme: '/images/donuts/morango-com-creme.webp',
+  alemanha: '/images/donuts/alemanha.webp',
+  chocolateGranulado: '/images/donuts/chocolate-granulado.webp',
+  friends: '/images/donuts/friends.webp',
+};
+
+/**
+ * "Nossos donuts de verdade": fotos que se abrem em leque com a rolagem.
+ * `productId` liga a foto ao sabor do cardápio (abre os detalhes ao tocar).
+ */
+export const showcase: { image: string; title: string; text: string; productId?: string }[] = [
+  { image: donutCutouts.alemanha, title: 'Donut Alemanha', text: 'O especial de quarta', productId: 'alemanha' },
+  { image: donutCutouts.morangoComCreme, title: 'Morango com Creme', text: 'Crosta de morango e brigadeiro branco', productId: 'morango-com-creme' },
+  { image: donutCutouts.chocolateGranulado, title: 'Chocolate com Granulado', text: 'O clássico que nunca falha', productId: 'chocolate-granulado' },
+  { image: donutCutouts.friends, title: 'Edição Friends', text: 'Chocolate e doce de leite', productId: 'friends' },
+]
+
+
+
 /** fotos da seção "Sobre nós" */
-export const aboutImages = [photos.morangoComCreme, photos.edicaoFriends, photos.chocolateGranulado];
+export const aboutImages = [donutCutouts.morangoComCreme, donutCutouts.friends, donutCutouts.chocolateGranulado];
 
 // ---------- Navegação ----------
 
@@ -233,20 +248,20 @@ export const categories: Category[] = [
     id: 'bebidas',
     label: 'Bebidas',
     emoji: '🥤',
-    emptyMessage: 'Nossas bebidas estão chegando ao site. Consulte as opções do dia pelo WhatsApp ou na loja.',
+    emptyMessage: 'As bebidas do dia você confere direto na loja ou perguntando pelo WhatsApp.',
   },
   {
     id: 'combos',
     label: 'Combos',
     emoji: '📦',
-    emptyMessage: 'Monte seu combo com a gente! Fale pelo WhatsApp e consulte caixas e kits disponíveis.',
+    emptyMessage: 'Caixas e kits para presentear ou dividir: confira as opções na loja ou pelo WhatsApp.',
   },
   { id: 'especiais', label: 'Edições Especiais', emoji: '✨' },
 ];
 
 /**
  * PRODUTOS — descrições e ingredientes são textos de apresentação.
- * Revise com a equipe da loja. Os selos `bestSeller` (Mais pedidos) e
+ * Revise com a equipe da loja. Os selos `bestSeller` (Favoritos) e
  * `isNew` (Novidades) podem ser ligados/desligados livremente.
  */
 export const products: Product[] = [
@@ -256,10 +271,18 @@ export const products: Product[] = [
     category: 'donuts',
     description: 'Cremoso, fresquinho e irresistível: crosta de morango por fora, recheio de brigadeiro branco e morangos frescos por cima.',
     ingredients: ['Crosta de morango', 'Brigadeiro branco', 'Morango fresco'],
-    price: null,
-    image: photos.morangoComCreme,
+    image: donutCutouts.morangoComCreme,
     art: { glaze: '#fff1f4', drizzle: '#ff6f9a', topping: 'strawberry' },
     isNew: true,
+  },
+  {
+    id: 'chocolate-granulado',
+    name: 'Chocolate com Granulado',
+    category: 'donuts',
+    description: 'O clássico que nunca falha: cobertura de chocolate e muito granulado.',
+    ingredients: ['Chocolate', 'Granulado'],
+    image: donutCutouts.chocolateGranulado,
+    art: { glaze: '#5a2e17', topping: 'sprinkles' },
   },
   {
     id: 'kinder-bueno',
@@ -267,7 +290,6 @@ export const products: Product[] = [
     category: 'donuts',
     description: 'Cobertura cremosa de chocolate, pedaços crocantes de Kinder Bueno e um toque de avelã.',
     ingredients: ['Chocolate', 'Kinder Bueno', 'Creme de avelã'],
-    price: null,
     art: { glaze: '#6b3a1f', drizzle: '#f5e6d3', topping: 'wafer' },
     bestSeller: true,
   },
@@ -277,7 +299,6 @@ export const products: Product[] = [
     category: 'donuts',
     description: 'Chocolate intenso, avelãs crocantes e um Ferrero Rocher coroando o topo.',
     ingredients: ['Chocolate', 'Ferrero Rocher', 'Avelã'],
-    price: null,
     art: { glaze: '#4a2412', drizzle: '#d9a441', topping: 'hazelnut' },
     bestSeller: true,
   },
@@ -287,7 +308,6 @@ export const products: Product[] = [
     category: 'donuts',
     description: 'Cobertura branca e muito biscoito Oreo triturado em cada mordida.',
     ingredients: ['Biscoito Oreo', 'Cobertura branca', 'Creme'],
-    price: null,
     art: { glaze: '#f4f1ee', drizzle: '#1d1a1a', topping: 'cookie' },
     bestSeller: true,
   },
@@ -297,7 +317,6 @@ export const products: Product[] = [
     category: 'donuts',
     description: 'O clássico recheado: massa fofinha e muito creme estilo bavarian no centro.',
     ingredients: ['Creme bavarian', 'Massa fofinha', 'Açúcar'],
-    price: null,
     art: { glaze: '#f7d9a8', topping: 'cream', filled: true },
   },
   {
@@ -306,7 +325,6 @@ export const products: Product[] = [
     category: 'donuts',
     description: 'Banana, doce de leite e chantilly: a sobremesa favorita em versão donut.',
     ingredients: ['Banana', 'Doce de leite', 'Chantilly'],
-    price: null,
     art: { glaze: '#c98a3d', drizzle: '#fff4e0', topping: 'banana' },
   },
   {
@@ -315,7 +333,6 @@ export const products: Product[] = [
     category: 'donuts',
     description: 'Cobertura de morango, chantininho aerado e morangos frescos por cima.',
     ingredients: ['Morango', 'Chantininho'],
-    price: null,
     art: { glaze: '#ff5c9a', drizzle: '#ffffff', topping: 'strawberry' },
   },
   {
@@ -324,7 +341,6 @@ export const products: Product[] = [
     category: 'donuts',
     description: 'Leve e fresquinho: chantilly generoso e morangos selecionados.',
     ingredients: ['Chantilly', 'Morango'],
-    price: null,
     art: { glaze: '#fff6f8', drizzle: '#ff6fa8', topping: 'strawberry' },
   },
   {
@@ -333,7 +349,6 @@ export const products: Product[] = [
     category: 'especiais',
     description: 'O donut mais famoso da cultura pop: cobertura rosa e granulado colorido.',
     ingredients: ['Cobertura rosa', 'Granulado colorido'],
-    price: null,
     art: { glaze: '#ff6fc0', topping: 'sprinkles' },
     bestSeller: true,
   },
@@ -343,7 +358,6 @@ export const products: Product[] = [
     category: 'especiais',
     description: 'Doce, salgado e crocante: caramelo com pipoca por cima.',
     ingredients: ['Caramelo', 'Pipoca'],
-    price: null,
     art: { glaze: '#e3a54a', drizzle: '#fff1c9', topping: 'popcorn' },
     isNew: true,
   },
@@ -353,7 +367,6 @@ export const products: Product[] = [
     category: 'especiais',
     description: 'O equilíbrio perfeito entre chocolate e a crocância salgadinha do pretzel.',
     ingredients: ['Chocolate', 'Pretzel'],
-    price: null,
     art: { glaze: '#3b1f12', drizzle: '#f3d27a', topping: 'pretzel' },
     isNew: true,
   },
@@ -363,8 +376,7 @@ export const products: Product[] = [
     category: 'especiais',
     description: 'O especial de quarta inspirado na Alemanha: cobertura crocante e um recheio dourado e cremoso no centro.',
     ingredients: ['Cobertura crocante', 'Recheio especial'],
-    price: null,
-    image: photos.especialDeQuarta,
+    image: donutCutouts.alemanha,
     art: { glaze: '#f3e3c3', drizzle: '#e3a54a', topping: 'none' },
     isNew: true,
   },
@@ -374,8 +386,7 @@ export const products: Product[] = [
     category: 'especiais',
     description: 'Donut de chocolate recheado com doce de leite e finalizado com lascas de chocolate.',
     ingredients: ['Chocolate', 'Doce de leite', 'Lascas de chocolate'],
-    price: null,
-    image: photos.edicaoFriends,
+    image: donutCutouts.friends,
     art: { glaze: '#4a2412', drizzle: '#d9a441', topping: 'none' },
     isNew: true,
   },
@@ -385,7 +396,6 @@ export const products: Product[] = [
     category: 'mini',
     description: 'Pequenos no tamanho, gigantes no sabor. Perfeitos para dividir (ou não).',
     ingredients: ['Sabores variados', 'Coberturas sortidas'],
-    price: null,
     art: { glaze: '#8b5cf6', drizzle: '#7CFF8A', topping: 'sprinkles' },
     isNew: true,
   },

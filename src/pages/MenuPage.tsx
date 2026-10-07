@@ -11,7 +11,7 @@ const fold = (s: string) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCa
 export function MenuPage() {
   usePageMeta(
     'Cardápio | Poison Donuts',
-    'Cardápio completo da Poison Donuts: donuts gigantes, mini donuts e edições especiais. Peça pelo WhatsApp com delivery ou retirada no Barra Shopping.',
+    'Conheça os sabores da Poison Donuts: donuts gigantes, mini donuts e edições especiais. Loja no Barra Shopping, Barra da Tijuca, Rio de Janeiro.',
     '/cardapio',
   );
   const [query, setQuery] = useState('');
@@ -30,7 +30,7 @@ export function MenuPage() {
         <div className="container page-hero__inner">
           <p className="eyebrow">Cardápio completo</p>
           <h1 className="section-title">Escolha seu <span className="text-gradient">planeta</span> favorito</h1>
-          <p className="section-lead">Toque em um donut para ver os detalhes. Monte seu pedido e finalize pelo WhatsApp, com delivery ou retirada no Barra Shopping.</p>
+          <p className="section-lead">Conheça todos os sabores da casa. Toque em um donut para ver os detalhes. Os sabores disponíveis podem variar a cada dia.</p>
           <label className="search">
             <span className="sr-only">Buscar no cardápio</span>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
@@ -57,7 +57,7 @@ export function MenuPage() {
               <div className="empty-card">
                 <span className="empty-card__icon" aria-hidden="true">🔭</span>
                 <h3>Nenhum donut encontrado</h3>
-                <p>Não achamos esse sabor por aqui, mas a loja pode ter novidades do dia.</p>
+                <p>Não achamos esse sabor por aqui, mas a loja sempre tem novidades.</p>
                 <a className="btn btn--whatsapp" href={whatsappUrl(`Olá, Poison Donuts! Vocês têm donut de ${query.trim()}?`)} target="_blank" rel="noopener noreferrer">
                   <IconWhatsApp width={20} height={20} /> Perguntar pelo WhatsApp
                 </a>

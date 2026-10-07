@@ -1,11 +1,8 @@
-import { Cart } from './components/Cart';
 import { Footer } from './components/Footer';
 import { MobileBar } from './components/MobileBar';
 import { Navbar } from './components/Navbar';
 import { ProductDialog } from './components/ProductDialog';
-import { Toast } from './components/Toast';
 import { WhatsAppButton } from './components/WhatsAppButton';
-import { CartProvider } from './context/CartContext';
 import { ProductDialogProvider } from './context/ProductDialogContext';
 import { useReveal } from './hooks/useReveal';
 import { usePath } from './lib/router';
@@ -33,9 +30,7 @@ function Layout() {
         <Page />
       </main>
       <Footer />
-      <Cart />
       <ProductDialog />
-      <Toast />
       <WhatsAppButton />
       <MobileBar />
     </>
@@ -44,10 +39,8 @@ function Layout() {
 
 export default function App() {
   return (
-    <CartProvider>
-      <ProductDialogProvider>
-        <Layout />
-      </ProductDialogProvider>
-    </CartProvider>
+    <ProductDialogProvider>
+      <Layout />
+    </ProductDialogProvider>
   );
 }

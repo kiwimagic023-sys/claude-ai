@@ -5,6 +5,8 @@ import { Events } from '../components/Events';
 import { Features } from '../components/Features';
 import { Flavors } from '../components/Flavors';
 import { Gallery } from '../components/Gallery';
+import { HowItsMade } from '../components/HowItsMade';
+import { Showcase } from '../components/Showcase';
 import { Hero } from '../components/Hero';
 import { Instagram } from '../components/Instagram';
 import { Location } from '../components/Location';
@@ -29,6 +31,8 @@ export function HomePage() {
     <>
       <Hero />
       <Features />
+      <Showcase />
+      <HowItsMade />
       <Flavors />
       <Menu />
       <Delivery />

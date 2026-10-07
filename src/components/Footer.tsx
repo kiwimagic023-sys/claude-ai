@@ -18,8 +18,11 @@ export function Footer() {
   return (
     <footer className="footer">
       <div className="footer__cta container">
-        <h2>Bateu vontade? <span className="text-gradient">A gente entrega.</span></h2>
-        <a className="btn btn--whatsapp btn--lg" href={whatsappUrl()} target="_blank" rel="noopener noreferrer"><IconWhatsApp width={22} height={22} /> Pedir pelo WhatsApp</a>
+        <h2>Bateu vontade? <span className="text-gradient">Venha nos visitar.</span></h2>
+        <div className="footer__cta-btns">
+          <a className="btn btn--primary btn--lg" href={links.googleMaps} target="_blank" rel="noopener noreferrer"><IconPin width={20} height={20} /> Como chegar</a>
+          <a className="btn btn--whatsapp btn--lg" href={whatsappUrl()} target="_blank" rel="noopener noreferrer"><IconWhatsApp width={22} height={22} /> Fale com a gente</a>
+        </div>
       </div>
       <div className="footer__grid container">
         <div className="footer__brand">
