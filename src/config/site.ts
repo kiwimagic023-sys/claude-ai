@@ -351,6 +351,17 @@ export const products: Product[] = [
     isNew: true,
   },
   {
+    id: 'alemanha',
+    name: 'Donut Alemanha',
+    category: 'especiais',
+    description: 'O especial de quarta inspirado na Alemanha: cobertura crocante e um recheio dourado e cremoso no centro.',
+    ingredients: ['Cobertura crocante', 'Recheio especial'],
+    price: null,
+    image: photos.especialDeQuarta,
+    art: { glaze: '#f3e3c3', drizzle: '#e3a54a', topping: 'none' },
+    isNew: true,
+  },
+  {
     id: 'friends',
     name: 'Edição Friends',
     category: 'especiais',
@@ -387,7 +398,7 @@ export const eventTypes = [
 
 export const gallery: GalleryItem[] = [
   { id: 'g1', title: 'Morango com Creme', tag: 'Donuts', shape: 'tall', image: photos.morangoComCreme, art: { glaze: '#ff6f9a', topping: 'none' } },
-  { id: 'g2', title: 'Especial de quarta', tag: 'Especiais', shape: 'square', image: photos.especialDeQuarta, art: { glaze: '#ffd23f', topping: 'none' } },
+  { id: 'g2', title: 'Donut Alemanha', tag: 'Especiais', shape: 'square', image: photos.especialDeQuarta, art: { glaze: '#ffd23f', topping: 'none' } },
   { id: 'g3', title: 'Morango com Creme em vídeo', tag: 'Vídeos', shape: 'tall', image: { ...heroVideo.mobile, poster: heroVideo.poster }, art: { glaze: '#ff7ac8', topping: 'none' } },
   { id: 'g4', title: 'Chocolate com granulado', tag: 'Donuts', shape: 'tall', image: photos.chocolateGranulado, art: { glaze: '#6b3a1f', topping: 'none' } },
   { id: 'g5', title: 'Edição Friends', tag: 'Especiais', shape: 'tall', image: photos.edicaoFriends, art: { glaze: '#c98a3d', topping: 'none' } },
@@ -399,7 +410,7 @@ export const gallery: GalleryItem[] = [
 
 export const instagramPosts: { id: string; image?: string; url?: string; art: DonutArt; caption: string }[] = [
   { id: 'i1', caption: 'Morango com Creme', image: photos.morangoComCremeArte, art: { glaze: '#ff6f9a', topping: 'none' } },
-  { id: 'i2', caption: 'Especial de quarta', image: photos.especialDeQuarta, art: { glaze: '#ffd23f', topping: 'none' } },
+  { id: 'i2', caption: 'Donut Alemanha', image: photos.especialDeQuarta, art: { glaze: '#ffd23f', topping: 'none' } },
   { id: 'i3', caption: 'Chocolate com granulado', image: photos.chocolateGranulado, art: { glaze: '#6b3a1f', topping: 'none' } },
   { id: 'i4', caption: 'Edição Friends', image: photos.edicaoFriends, art: { glaze: '#c98a3d', topping: 'none' } },
   { id: 'i5', caption: 'Morango com Creme', image: photos.morangoComCreme, art: { glaze: '#ff6f9a', topping: 'none' } },
