@@ -38,9 +38,9 @@ export function Reviews() {
           <ul className="reviews__grid">
             {reviews.map((r, i) => (
               <li key={i} className="review-card" data-reveal style={{ transitionDelay: `${i * 70}ms` }}>
-                <Stars value={r.rating} size={16} />
-                <blockquote>“{r.text}”</blockquote>
-                <footer><strong>{r.author}</strong><span>{r.source}{r.date ? ` · ${r.date}` : ''}</span></footer>
+                {r.rating !== undefined ? <Stars value={r.rating} size={16} /> : <span className="review-card__quote" aria-hidden="true">“</span>}
+                <blockquote>{r.text}</blockquote>
+                <footer><span className="review-card__avatar" aria-hidden="true">{r.author.charAt(0)}</span><div><strong>{r.author}</strong><span>{r.date ? `${r.date} · ` : ''}via {r.source}</span></div></footer>
               </li>
             ))}
           </ul>

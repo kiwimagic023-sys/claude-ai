@@ -1,5 +1,5 @@
-import { products } from '../config/site';
-import { Donut } from './Donut';
+import { aboutImages, products } from '../config/site';
+import { Media } from './Media';
 
 const values = [
   { k: 'Criatividade', v: 'Sabores que saem do comum e viram assunto.' },
@@ -16,9 +16,9 @@ export function About() {
     <section id="sobre" className="section about" aria-labelledby="about-title">
       <div className="container about__grid">
         <div className="about__visual" data-reveal aria-hidden="true">
-          <div className="about__frame about__frame--a"><Donut art={a.art} seed="about-a" /></div>
-          <div className="about__frame about__frame--b"><Donut art={b.art} seed="about-b" /></div>
-          <div className="about__frame about__frame--c"><Donut art={c.art} seed="about-c" /></div>
+          <div className="about__frame about__frame--a"><Media src={aboutImages[0]} art={a.art} seed="about-a" alt="" /></div>
+          <div className="about__frame about__frame--b"><Media src={aboutImages[1]} art={b.art} seed="about-b" alt="" /></div>
+          <div className="about__frame about__frame--c"><Media src={aboutImages[2]} art={c.art} seed="about-c" alt="" /></div>
           <div className="about__badge"><strong>100%</strong><span>feito para<br />impressionar</span></div>
         </div>
         <div className="about__copy" data-reveal>

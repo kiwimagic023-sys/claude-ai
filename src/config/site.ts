@@ -30,6 +30,15 @@ export type Topping =
   | 'cream'
   | 'none';
 
+/** vídeo com versões WebM/MP4 e imagem de capa */
+export interface VideoSource {
+  mp4: string;
+  webm?: string;
+  poster?: string;
+}
+/** caminho de uma imagem/vídeo, ou um vídeo com várias versões */
+export type MediaSource = string | VideoSource;
+
 export interface DonutArt {
   /** cor principal da cobertura */
   glaze: string;
@@ -78,8 +87,8 @@ export interface DayHours {
 export interface GalleryItem {
   id: string;
   title: string;
-  tag: 'Donuts' | 'Mini donuts' | 'Eventos' | 'Loja' | 'Embalagens' | 'Produtos' | 'Bastidores';
-  image?: string;
+  tag: 'Donuts' | 'Mini donuts' | 'Especiais' | 'Vídeos' | 'Eventos' | 'Loja' | 'Embalagens' | 'Produtos' | 'Bastidores';
+  image?: MediaSource;
   art?: DonutArt;
   /** proporção do card no mosaico */
   shape?: 'tall' | 'wide' | 'square';
@@ -87,7 +96,8 @@ export interface GalleryItem {
 
 export interface Review {
   author: string;
-  rating: number;
+  /** nota em estrelas (opcional: só preencha se souber a nota exata) */
+  rating?: number;
   text: string;
   /** ex.: 'Google', 'iFood' */
   source: string;
@@ -112,9 +122,9 @@ export const store = {
   website: 'https://poisondonut.com.br',
   priceRange: 'R$20–40',
   rating: 4.7,
-  ratingCount: 400,
-  /** texto exibido: "Mais de 400 avaliações" */
-  ratingCountLabel: 'Mais de 400 avaliações',
+  ratingCount: 446,
+  /** texto exibido junto da nota */
+  ratingCountLabel: '446 avaliações no Google',
   services: ['Delivery', 'Retirada no local', 'Compra na loja', 'Eventos', 'Encomendas'],
   address: {
     street: 'Av. das Américas, 4666',
@@ -175,6 +185,30 @@ export const integrations = {
   ] as DeliveryPlatform[],
 };
 
+// ---------- Vídeo da abertura ----------
+/**
+ * Vídeo em tela cheia no topo do site (sem som, em loop).
+ * Cada versão tem WebM (mais leve no Chrome/Android) e MP4 (Safari/iPhone).
+ * `mobile` = versão mais leve usada em telas pequenas; `poster` = imagem enquanto carrega.
+ */
+export const heroVideo = {
+  desktop: { webm: '/videos/hero-morango-1080.webm', mp4: '/videos/hero-morango-1080.mp4' },
+  mobile: { webm: '/videos/hero-morango-720.webm', mp4: '/videos/hero-morango-720.mp4' },
+  poster: '/videos/hero-morango-poster.jpg',
+};
+
+// ---------- Fotos ----------
+export const photos = {
+  morangoComCreme: '/images/morango-com-creme.webp',
+  morangoComCremeArte: '/images/morango-com-creme-arte.webp',
+  especialDeQuarta: '/images/especial-de-quarta.webp',
+  chocolateGranulado: '/images/chocolate-granulado.webp',
+  edicaoFriends: '/images/edicao-friends.webp',
+};
+
+/** fotos da seção "Sobre nós" */
+export const aboutImages = [photos.morangoComCreme, photos.edicaoFriends, photos.chocolateGranulado];
+
 // ---------- Navegação ----------
 
 export const navItems = [
@@ -213,6 +247,17 @@ export const categories: Category[] = [
  * `isNew` (Novidades) podem ser ligados/desligados livremente.
  */
 export const products: Product[] = [
+  {
+    id: 'morango-com-creme',
+    name: 'Morango com Creme',
+    category: 'donuts',
+    description: 'Cremoso, fresquinho e irresistível: cobertura com pedaços de morango, creme no centro e morangos frescos por cima.',
+    ingredients: ['Morango', 'Creme', 'Cobertura cremosa'],
+    price: null,
+    image: photos.morangoComCreme,
+    art: { glaze: '#fff1f4', drizzle: '#ff6f9a', topping: 'strawberry' },
+    isNew: true,
+  },
   {
     id: 'kinder-bueno',
     name: 'Kinder Bueno',
@@ -334,27 +379,24 @@ export const eventTypes = [
 // Substitua `art` por `image: '/images/arquivo.webp'` quando tiver as fotos reais.
 
 export const gallery: GalleryItem[] = [
-  { id: 'g1', title: 'Kinder Bueno', tag: 'Donuts', shape: 'tall', art: products[0].art },
-  { id: 'g2', title: 'Mini donuts', tag: 'Mini donuts', shape: 'square', art: products[10].art },
-  { id: 'g3', title: 'Mesa de evento', tag: 'Eventos', shape: 'wide', art: { glaze: '#ff2fb3', topping: 'sprinkles' } },
-  { id: 'g4', title: 'Simpson', tag: 'Produtos', shape: 'square', art: products[7].art },
-  { id: 'g5', title: 'Nossa loja', tag: 'Loja', shape: 'tall', art: { glaze: '#7b2ff7', drizzle: '#39e991', topping: 'none' } },
-  { id: 'g6', title: 'Caixa Poison', tag: 'Embalagens', shape: 'square', art: products[2].art },
-  { id: 'g7', title: 'Ferrero Rocher', tag: 'Donuts', shape: 'square', art: products[1].art },
-  { id: 'g8', title: 'Bastidores', tag: 'Bastidores', shape: 'wide', art: products[3].art },
-  { id: 'g9', title: 'Morango com Chantininho', tag: 'Donuts', shape: 'tall', art: products[5].art },
+  { id: 'g1', title: 'Morango com Creme', tag: 'Donuts', shape: 'tall', image: photos.morangoComCreme, art: { glaze: '#ff6f9a', topping: 'none' } },
+  { id: 'g2', title: 'Especial de quarta', tag: 'Especiais', shape: 'square', image: photos.especialDeQuarta, art: { glaze: '#ffd23f', topping: 'none' } },
+  { id: 'g3', title: 'Morango com Creme em vídeo', tag: 'Vídeos', shape: 'tall', image: { ...heroVideo.mobile, poster: heroVideo.poster }, art: { glaze: '#ff7ac8', topping: 'none' } },
+  { id: 'g4', title: 'Chocolate com granulado', tag: 'Donuts', shape: 'tall', image: photos.chocolateGranulado, art: { glaze: '#6b3a1f', topping: 'none' } },
+  { id: 'g5', title: 'Edição Friends', tag: 'Especiais', shape: 'tall', image: photos.edicaoFriends, art: { glaze: '#c98a3d', topping: 'none' } },
+  { id: 'g6', title: 'Cremoso, fresquinho e irresistível', tag: 'Donuts', shape: 'square', image: photos.morangoComCremeArte, art: { glaze: '#ff2fb3', topping: 'none' } },
 ];
 
 // ---------- Instagram ----------
-// Para mostrar posts reais, informe `image` (foto do post) e `url` (link do post).
+// `image` = foto do post; `url` = link do post (sem url, abre o perfil).
 
 export const instagramPosts: { id: string; image?: string; url?: string; art: DonutArt; caption: string }[] = [
-  { id: 'i1', caption: 'Kinder Bueno', art: products[0].art },
-  { id: 'i2', caption: 'Simpson', art: products[7].art },
-  { id: 'i3', caption: 'Oreo', art: products[2].art },
-  { id: 'i4', caption: 'Popcorn', art: products[8].art },
-  { id: 'i5', caption: 'Morango', art: products[5].art },
-  { id: 'i6', caption: 'Mini donuts', art: products[10].art },
+  { id: 'i1', caption: 'Morango com Creme', image: photos.morangoComCremeArte, art: { glaze: '#ff6f9a', topping: 'none' } },
+  { id: 'i2', caption: 'Especial de quarta', image: photos.especialDeQuarta, art: { glaze: '#ffd23f', topping: 'none' } },
+  { id: 'i3', caption: 'Chocolate com granulado', image: photos.chocolateGranulado, art: { glaze: '#6b3a1f', topping: 'none' } },
+  { id: 'i4', caption: 'Edição Friends', image: photos.edicaoFriends, art: { glaze: '#c98a3d', topping: 'none' } },
+  { id: 'i5', caption: 'Morango com Creme', image: photos.morangoComCreme, art: { glaze: '#ff6f9a', topping: 'none' } },
+  { id: 'i6', caption: 'Vídeo Morango com Creme', image: heroVideo.poster, art: { glaze: '#ff7ac8', topping: 'none' } },
 ];
 
 // ---------- Avaliações ----------
@@ -364,4 +406,23 @@ export const instagramPosts: { id: string; image?: string; url?: string; art: Do
  * Exemplo:
  *   { author: 'Nome do cliente', rating: 5, text: 'Texto da avaliação', source: 'Google', date: '2025' },
  */
-export const reviews: Review[] = [];
+export const reviews: Review[] = [
+  {
+    author: 'Marcelo Cassar',
+    text: 'Sem dúvidas um dos melhores donuts do mundo. E comparando com aqueles americanos hein. A massa é absurdamente fresca e é tão levinha que até eu que não como sem ser recheado amei os não recheados também. Meu preferido foi o de kinder bueno, mas o de ferrero richet também era muito top. Nota mil pra loja. Merece todo sucesso.',
+    source: 'Google',
+    date: 'Local Guide',
+  },
+  {
+    author: 'Bianca Menezes',
+    text: 'Os melhores donuts são da Poison, super macios, uma variedade de sabores enormes e por falar em enormes, o tamanho também é surreal. O atendimento sempre muito atencioso…',
+    source: 'Google',
+    date: 'Local Guide',
+  },
+  {
+    author: 'Alex Magno',
+    text: 'Iniciando pelos donuts, constata-se que são verdadeiramente notáveis. A única ressalva reside na ampla variedade disponível, o que, por vezes, dificulta a seleção da opção mais desejável, claro que é apenas uma brincadeira…',
+    source: 'Google',
+    date: 'Local Guide',
+  },
+];

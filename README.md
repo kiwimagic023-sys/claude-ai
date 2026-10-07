@@ -23,6 +23,8 @@ Tudo fica em **`src/config/site.ts`**:
 |---|---|
 | Nome, slogan, telefone, endereço, avaliação | `store` |
 | Instagram, Google Maps | `links` |
+| Vídeo em tela cheia da abertura | `heroVideo` (arquivos em `public/videos/`) |
+| Fotos (Sobre nós, galeria, Instagram) | `photos`, `aboutImages` |
 | Horários (o indicador "Aberto/Fechado" usa estes dados) | `hours` |
 | Produtos, preços, descrições, ingredientes, selos | `products` |
 | Categorias do cardápio | `categories` |
@@ -41,6 +43,18 @@ Tudo fica em **`src/config/site.ts`**:
 
 Formatos aceitos: `.webp`, `.jpg`, `.png`, `.avif`, `.gif` animado e vídeos curtos `.mp4`/`.webm`, que tocam sem som e em loop.
 Enquanto um item não tiver `image`, o site mostra uma ilustração de donut gerada automaticamente.
+
+### Vídeo da abertura
+
+Para trocar o vídeo, gere as versões abaixo (o exemplo usa o `ffmpeg`) e atualize `heroVideo`:
+
+```bash
+ffmpeg -i video.mp4 -an -c:v libx264 -crf 27 -movflags +faststart -vf scale=1080:-2 public/videos/hero-1080.mp4
+ffmpeg -i video.mp4 -an -c:v libx264 -crf 28 -movflags +faststart -vf scale=720:-2  public/videos/hero-720.mp4
+ffmpeg -i video.mp4 -an -c:v libvpx-vp9 -b:v 0 -crf 36 -vf scale=1080:-2 public/videos/hero-1080.webm
+ffmpeg -i video.mp4 -an -c:v libvpx-vp9 -b:v 0 -crf 38 -vf scale=720:-2  public/videos/hero-720.webm
+ffmpeg -ss 1.6 -i video.mp4 -frames:v 1 -vf scale=720:-2 public/videos/hero-poster.jpg
+```
 
 ## Pedidos
 
