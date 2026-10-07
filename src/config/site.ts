@@ -150,19 +150,15 @@ export const links = {
 
 export const whatsappDefaultMessage = 'Olá, Poison Donuts! Gostaria de fazer um pedido.';
 
-/**
- * HORÁRIOS — confirme com a loja e ajuste aqui.
- * O fechamento às 23h veio das informações da marca; a abertura
- * às 10h é um valor inicial que deve ser conferido.
- */
+/** HORÁRIOS — o indicador "Aberto/Fechado" do site usa estes dados. */
 export const hours: DayHours[] = [
-  { day: 1, label: 'Segunda', open: '10:00', close: '23:00' },
-  { day: 2, label: 'Terça', open: '10:00', close: '23:00' },
-  { day: 3, label: 'Quarta', open: '10:00', close: '23:00' },
-  { day: 4, label: 'Quinta', open: '10:00', close: '23:00' },
-  { day: 5, label: 'Sexta', open: '10:00', close: '23:00' },
-  { day: 6, label: 'Sábado', open: '10:00', close: '23:00' },
-  { day: 0, label: 'Domingo', open: '10:00', close: '23:00' },
+  { day: 1, label: 'Segunda', open: '12:00', close: '23:00' },
+  { day: 2, label: 'Terça', open: '12:00', close: '23:00' },
+  { day: 3, label: 'Quarta', open: '12:00', close: '23:00' },
+  { day: 4, label: 'Quinta', open: '12:00', close: '23:00' },
+  { day: 5, label: 'Sexta', open: '12:00', close: '23:00' },
+  { day: 6, label: 'Sábado', open: '12:00', close: '23:00' },
+  { day: 0, label: 'Domingo', open: '12:00', close: '22:00' },
 ];
 export const timeZone = 'America/Sao_Paulo';
 
@@ -251,8 +247,8 @@ export const products: Product[] = [
     id: 'morango-com-creme',
     name: 'Morango com Creme',
     category: 'donuts',
-    description: 'Cremoso, fresquinho e irresistível: cobertura com pedaços de morango, creme no centro e morangos frescos por cima.',
-    ingredients: ['Morango', 'Creme', 'Cobertura cremosa'],
+    description: 'Cremoso, fresquinho e irresistível: crosta de morango por fora, recheio de brigadeiro branco e morangos frescos por cima.',
+    ingredients: ['Crosta de morango', 'Brigadeiro branco', 'Morango fresco'],
     price: null,
     image: photos.morangoComCreme,
     art: { glaze: '#fff1f4', drizzle: '#ff6f9a', topping: 'strawberry' },
@@ -352,6 +348,17 @@ export const products: Product[] = [
     ingredients: ['Chocolate', 'Pretzel'],
     price: null,
     art: { glaze: '#3b1f12', drizzle: '#f3d27a', topping: 'pretzel' },
+    isNew: true,
+  },
+  {
+    id: 'friends',
+    name: 'Edição Friends',
+    category: 'especiais',
+    description: 'Donut de chocolate recheado com doce de leite e finalizado com lascas de chocolate.',
+    ingredients: ['Chocolate', 'Doce de leite', 'Lascas de chocolate'],
+    price: null,
+    image: photos.edicaoFriends,
+    art: { glaze: '#4a2412', drizzle: '#d9a441', topping: 'none' },
     isNew: true,
   },
   {
