@@ -193,6 +193,13 @@ export const heroVideo = {
   poster: '/videos/hero-morango-poster.jpg',
 };
 
+// ---------- Logo ----------
+/** logo oficial (mascote em círculo roxo). `small` é usado em tamanhos até 96px. */
+export const brandLogo = {
+  large: '/images/logo-poison-donuts.webp',
+  small: '/images/logo-poison-donuts-96.webp',
+};
+
 // ---------- Fotos ----------
 export const photos = {
   morangoComCreme: '/images/morango-com-creme.webp',

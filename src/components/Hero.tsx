@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { heroVideo, store } from '../config/site';
+import { brandLogo, heroVideo, store } from '../config/site';
 import { scrollToId } from '../lib/scroll';
 import { IconArrow, IconStar } from './Icons';
 import { usePedirAgora } from './Navbar';
@@ -55,6 +55,7 @@ export function Hero() {
       {stars && <Starfield density={0.00008} />}
 
       <div className="container hero__content">
+        <img className="hero__logo" src={brandLogo.large} width={128} height={128} alt="" fetchPriority="high" />
         <p className="eyebrow hero__eyebrow">
           <span className="pulse-dot" /> Barra Shopping · Rio de Janeiro
         </p>

@@ -23,15 +23,16 @@ export function Footer() {
       </div>
       <div className="footer__grid container">
         <div className="footer__brand">
-          <Logo size={52} />
+          <Logo size={72} />
           <p className="footer__slogan">{store.slogan}</p>
           <p className="footer__meta">{store.segment} · {store.priceRange} por pessoa</p>
         </div>
         <nav aria-label="Rodapé">
           <h3>Navegue</h3>
           <ul>
+            <li><a href="/" onClick={go('inicio')}>Início</a></li>
             <li><a href="/cardapio" onClick={linkHandler('/cardapio')}>Cardápio</a></li>
-            {footerLinks.map((l) => <li key={l.id}><a href={l.id === 'inicio' ? '/' : `/#${l.id}`} onClick={go(l.id)}>{l.label}</a></li>)}
+            {footerLinks.filter((l) => l.id !== 'inicio').map((l) => <li key={l.id}><a href={l.id === 'inicio' ? '/' : `/#${l.id}`} onClick={go(l.id)}>{l.label}</a></li>)}
           </ul>
         </nav>
         <div>
