@@ -29,10 +29,10 @@ export function HomePage() {
 
   return (
     <>
+      <HowItsMade intro />
       <Hero />
       <Features />
       <Showcase />
-      <HowItsMade />
       <Flavors />
       <Menu />
       <Delivery />

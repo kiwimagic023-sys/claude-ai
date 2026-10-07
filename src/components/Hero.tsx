@@ -40,7 +40,7 @@ export function Hero() {
   }, [playing]);
 
   return (
-    <section id="inicio" ref={section} className={`hero ${scrolly ? 'hero--scrolly' : ''}`} aria-labelledby="hero-title">
+    <section id="capa" ref={section} className={`hero ${scrolly ? 'hero--scrolly' : ''}`} aria-labelledby="hero-title">
       <div className="hero__sticky">
         <div className="hero__media">
           <video
@@ -76,10 +76,10 @@ export function Hero() {
           <p className="eyebrow hero__eyebrow">
             <span className="pulse-dot" /> Barra Shopping · Rio de Janeiro
           </p>
-          <h1 id="hero-title" className="hero__brand">
+          <h2 id="hero-title" className="hero__brand">
             <span className="hero__brand-top">Poison</span>
             <span className="hero__brand-bottom">Donuts</span>
-          </h1>
+          </h2>
           <div className="hero__panel">
             <p className="hero__slogan">Os melhores donuts da galáxia</p>
             <p className="hero__lead">Donuts gigantes, recheios irresistíveis e sabores para deixar qualquer momento muito mais gostoso.</p>

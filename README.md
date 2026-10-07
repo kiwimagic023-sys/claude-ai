@@ -84,9 +84,9 @@ ffmpeg -ss 1.6 -i video.mp4 -frames:v 1 -vf scale=720:-2 public/videos/hero-post
 
 ## Animações com a rolagem
 
-- **Capa:** vídeo em tela cheia que vira um cartão, com donuts voando e frases aparecendo.
+- **Capa (depois da abertura):** vídeo em tela cheia que vira um cartão, com donuts voando e frases aparecendo.
 - **Nossos donuts de verdade:** os donuts recortados se abrem em leque (no celular, em grade 2×2).
-- **Como é feito:** um donut é montado etapa por etapa (massa, descanso, fritura, cobertura, recheio e decoração).
+- **Abertura (primeira tela):** um donut com carinha é feito etapa por etapa enquanto a pessoa rola (massa, descanso, fritura, cobertura, recheio e decoração). Os olhos seguem o dedo/mouse e ele reage ao toque.
 
 Para quem ativou "reduzir movimento" no aparelho, as animações ficam desligadas e o conteúdo aparece parado.
 
