@@ -41,9 +41,9 @@ export function Gallery() {
         </div>
         <div className="masonry">
           {items.map((g, i) => (
-            <button key={g.id} className={`masonry__item shape-${g.shape ?? 'square'}`} onClick={() => setOpenIndex(i)} aria-label={`Ampliar: ${g.title}`} style={{ ['--glaze' as string]: g.art?.glaze ?? '#7b2ff7' }}>
-              <Media src={g.image} art={g.art} seed={g.id} alt={g.title} className="masonry__media" />
-              <span className="masonry__caption"><small>{g.tag}</small>{g.title}</span>
+            <button key={g.id} className={`masonry__item shape-${g.shape ?? 'square'}`} onClick={() => setOpenIndex(i)} aria-label={`${g.tag} ${g.title}, ampliar`} style={{ ['--glaze' as string]: g.art?.glaze ?? '#7b2ff7' }}>
+              <Media src={g.image} art={g.art} seed={g.id} alt="" className="masonry__media" />
+              <span className="masonry__caption"><small>{g.tag}</small> {g.title}</span>
             </button>
           ))}
         </div>

@@ -1,4 +1,5 @@
 import { useCart } from '../context/CartContext';
+import { linkHandler } from '../lib/router';
 import { scrollToId } from '../lib/scroll';
 import { whatsappUrl } from '../lib/whatsapp';
 import { IconCart, IconDonut, IconHome, IconPin, IconWhatsApp } from './Icons';
@@ -8,7 +9,7 @@ export function MobileBar() {
   return (
     <nav className="mobile-bar" aria-label="Atalhos">
       <button onClick={() => scrollToId('inicio')}><IconHome /><span>Início</span></button>
-      <button onClick={() => scrollToId('cardapio')}><IconDonut /><span>Cardápio</span></button>
+      <a href="/cardapio" onClick={linkHandler('/cardapio')}><IconDonut /><span>Cardápio</span></a>
       <button className="mobile-bar__cart" onClick={cart.open} aria-label={`Carrinho, ${cart.count} ${cart.count === 1 ? 'item' : 'itens'}`}>
         <span className="mobile-bar__cart-icon">
           <IconCart />

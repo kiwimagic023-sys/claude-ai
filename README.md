@@ -2,7 +2,8 @@
 
 Site da **Poison Donuts** (Barra Shopping, Barra da Tijuca, RJ): os melhores donuts da galáxia.
 
-Feito com **React + TypeScript + Vite** e CSS próprio, sem bibliotecas pesadas.
+Feito com **React + TypeScript + Vite** e CSS próprio, sem bibliotecas pesadas. As fontes (Unbounded e Plus Jakarta Sans)
+são hospedadas no próprio site, sem chamadas ao Google Fonts.
 
 ## Como rodar
 
@@ -13,7 +14,25 @@ npm run build    # gera a versão final em /dist
 npm run preview  # testa a versão final localmente
 ```
 
-Para publicar, envie a pasta `dist/` para qualquer hospedagem estática (Vercel, Netlify, Cloudflare Pages, Hostinger etc.).
+Para publicar, envie a pasta `dist/` para qualquer hospedagem estática. O site tem páginas com endereço próprio,
+e os arquivos que fazem esses endereços funcionarem já estão incluídos:
+
+| Hospedagem | Arquivo |
+|---|---|
+| Netlify / Cloudflare Pages | `public/_redirects` |
+| Vercel | `vercel.json` |
+| Hostinger e outras com Apache | `public/.htaccess` |
+
+## Páginas
+
+| Endereço | Conteúdo |
+|---|---|
+| `/` | Página inicial com todas as seções (`/#cardapio`, `/#eventos`, `/#localizacao`…) |
+| `/cardapio` | Cardápio completo com busca e categorias (bom para o link da bio do Instagram) |
+| `/privacidade` | Política de privacidade (LGPD) |
+| qualquer outro | Página 404 |
+
+Clicar em um produto abre os detalhes (foto grande, ingredientes e sugestões).
 
 ## Onde editar as informações
 

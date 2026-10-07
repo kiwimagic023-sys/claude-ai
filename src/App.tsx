@@ -1,52 +1,40 @@
-import { About } from './components/About';
 import { Cart } from './components/Cart';
-import { Delivery } from './components/Delivery';
-import { Events } from './components/Events';
-import { Features } from './components/Features';
-import { Flavors } from './components/Flavors';
 import { Footer } from './components/Footer';
-import { Gallery } from './components/Gallery';
-import { Hero } from './components/Hero';
-import { Instagram } from './components/Instagram';
-import { Location } from './components/Location';
-import { Menu } from './components/Menu';
 import { MobileBar } from './components/MobileBar';
 import { Navbar } from './components/Navbar';
-import { Reviews } from './components/Reviews';
+import { ProductDialog } from './components/ProductDialog';
 import { Toast } from './components/Toast';
 import { WhatsAppButton } from './components/WhatsAppButton';
 import { CartProvider } from './context/CartContext';
+import { ProductDialogProvider } from './context/ProductDialogContext';
 import { useReveal } from './hooks/useReveal';
-import { useEffect } from 'react';
+import { usePath } from './lib/router';
+import { HomePage } from './pages/HomePage';
+import { MenuPage } from './pages/MenuPage';
+import { NotFoundPage } from './pages/NotFoundPage';
+import { PrivacyPage } from './pages/PrivacyPage';
 
-function Page() {
+const routes: Record<string, () => React.ReactElement> = {
+  '/': HomePage,
+  '/cardapio': MenuPage,
+  '/privacidade': PrivacyPage,
+};
+
+function Layout() {
+  const path = usePath();
   useReveal();
-
-  // abre a seção da URL (ex.: /#cardapio) ao carregar
-  useEffect(() => {
-    const id = decodeURIComponent(location.hash.slice(1));
-    if (id) requestAnimationFrame(() => document.getElementById(id)?.scrollIntoView());
-  }, []);
+  const Page = routes[path] ?? NotFoundPage;
 
   return (
     <>
       <a className="skip-link" href="#conteudo">Pular para o conteúdo</a>
-      <Navbar />
-      <main id="conteudo">
-        <Hero />
-        <Features />
-        <Flavors />
-        <Menu />
-        <Delivery />
-        <Events />
-        <Gallery />
-        <About />
-        <Reviews />
-        <Instagram />
-        <Location />
+      <Navbar path={path} />
+      <main id="conteudo" key={path}>
+        <Page />
       </main>
       <Footer />
       <Cart />
+      <ProductDialog />
       <Toast />
       <WhatsAppButton />
       <MobileBar />
@@ -57,7 +45,9 @@ function Page() {
 export default function App() {
   return (
     <CartProvider>
-      <Page />
+      <ProductDialogProvider>
+        <Layout />
+      </ProductDialogProvider>
     </CartProvider>
   );
 }

@@ -1,5 +1,6 @@
 import type { Product } from '../config/site';
 import { useCart } from '../context/CartContext';
+import { useProductDialog } from '../context/ProductDialogContext';
 import { formatPrice } from '../lib/format';
 import { IconMinus, IconPlus } from './Icons';
 import { Media } from './Media';
@@ -18,10 +19,10 @@ export function QtyControl({ id, name }: { id: string; name: string }) {
 
 export function ProductBadges({ product }: { product: Product }) {
   return (
-    <div className="badges">
+    <span className="badges">
       {product.bestSeller && <span className="tag tag--hot">🔥 Mais pedidos</span>}
       {product.isNew && <span className="tag tag--new">✨ Novidade</span>}
-    </div>
+    </span>
   );
 }
 
@@ -38,15 +39,19 @@ export function AddButton({ product, block = false }: { product: Product; block?
 }
 
 export function ProductCard({ product }: { product: Product }) {
+  const dialog = useProductDialog();
   return (
     <article className="product-card" style={{ ['--glaze' as string]: product.art.glaze }}>
       <div className="product-card__media">
         <ProductBadges product={product} />
         <Media src={product.image} art={product.art} seed={product.id} alt={`Donut ${product.name}`} className="product-card__img" />
+        <button className="product-card__open" onClick={() => dialog.show(product)} aria-label={`Ver detalhes de ${product.name}`}>
+          <span className="product-card__zoom">Ver detalhes</span>
+        </button>
       </div>
       <div className="product-card__body">
         <div className="product-card__head">
-          <h3>{product.name}</h3>
+          <h3><button className="product-card__title" onClick={() => dialog.show(product)}>{product.name}</button></h3>
           <span className={`price ${product.price === null ? 'price--ask' : ''}`}>{formatPrice(product.price)}</span>
         </div>
         <p className="product-card__desc">{product.description}</p>

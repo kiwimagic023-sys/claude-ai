@@ -13,6 +13,8 @@ export function Hero() {
   // versão mais leve do vídeo no celular
   const [sources] = useState(() => (window.matchMedia('(max-width: 767px)').matches ? heroVideo.mobile : heroVideo.desktop));
   const [playing, setPlaying] = useState(() => !reducedMotion());
+  // estrelas animadas só em telas grandes (no celular o vídeo já dá movimento e economiza bateria)
+  const [stars] = useState(() => window.matchMedia('(min-width: 768px)').matches);
 
   useEffect(() => {
     const v = video.current;
@@ -50,7 +52,7 @@ export function Hero() {
         <source src={sources.mp4} type="video/mp4" />
       </video>
       <div className="hero__shade" aria-hidden="true" />
-      <Starfield density={0.00008} />
+      {stars && <Starfield density={0.00008} />}
 
       <div className="container hero__content">
         <p className="eyebrow hero__eyebrow">

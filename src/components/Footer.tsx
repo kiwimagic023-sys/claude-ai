@@ -3,10 +3,10 @@ import { scrollToId } from '../lib/scroll';
 import { IconInstagram, IconPhone, IconPin, IconWhatsApp } from './Icons';
 import { Logo } from './Logo';
 import { whatsappUrl } from '../lib/whatsapp';
+import { linkHandler } from '../lib/router';
 
 const footerLinks = [
   { id: 'inicio', label: 'Início' },
-  { id: 'cardapio', label: 'Cardápio' },
   { id: 'eventos', label: 'Eventos' },
   { id: 'delivery', label: 'Delivery' },
   { id: 'sobre', label: 'Sobre' },
@@ -29,7 +29,10 @@ export function Footer() {
         </div>
         <nav aria-label="Rodapé">
           <h3>Navegue</h3>
-          <ul>{footerLinks.map((l) => <li key={l.id}><a href={`#${l.id}`} onClick={go(l.id)}>{l.label}</a></li>)}</ul>
+          <ul>
+            <li><a href="/cardapio" onClick={linkHandler('/cardapio')}>Cardápio</a></li>
+            {footerLinks.map((l) => <li key={l.id}><a href={l.id === 'inicio' ? '/' : `/#${l.id}`} onClick={go(l.id)}>{l.label}</a></li>)}
+          </ul>
         </nav>
         <div>
           <h3>Contato</h3>
@@ -45,6 +48,7 @@ export function Footer() {
       </div>
       <div className="footer__bottom container">
         <p>© {new Date().getFullYear()} {store.name}. Todos os direitos reservados.</p>
+        <a href="/privacidade" onClick={linkHandler('/privacidade')}>Política de privacidade</a>
         <p>Barra Shopping · Rio de Janeiro - RJ</p>
       </div>
       <div className="footer__wordmark" aria-hidden="true">POISON</div>

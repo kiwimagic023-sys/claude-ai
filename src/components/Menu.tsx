@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { categories, products, type CategoryId } from '../config/site';
 import { whatsappUrl } from '../lib/whatsapp';
+import { linkHandler } from '../lib/router';
 import { IconWhatsApp } from './Icons';
 import { ProductCard } from './ProductCard';
 
@@ -56,6 +57,9 @@ export function Menu() {
               </a>
             </div>
           )}
+        </div>
+        <div className="menu__more">
+          <a className="btn btn--ghost btn--lg" href="/cardapio" onClick={linkHandler('/cardapio')}>Ver cardápio completo</a>
         </div>
       </div>
     </section>

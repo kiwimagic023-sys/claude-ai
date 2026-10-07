@@ -10,10 +10,10 @@ export const usePedirAgora = () => {
   return () => (cart.count > 0 ? cart.open() : scrollToId('cardapio'));
 };
 
-export function Navbar() {
+export function Navbar({ path }: { path: string }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [active, setActive] = useState('inicio');
+  const [active, setActive] = useState(path === '/' ? 'inicio' : path.slice(1));
   const cart = useCart();
   const pedir = usePedirAgora();
 
@@ -25,6 +25,8 @@ export function Navbar() {
   }, []);
 
   useEffect(() => {
+    setActive(path === '/' ? 'inicio' : path.slice(1));
+    if (path !== '/') return;
     const sections = navItems.map((n) => document.getElementById(n.id)).filter(Boolean) as HTMLElement[];
     const io = new IntersectionObserver(
       (entries) => entries.forEach((e) => e.isIntersecting && setActive(e.target.id)),
@@ -32,7 +34,7 @@ export function Navbar() {
     );
     sections.forEach((s) => io.observe(s));
     return () => io.disconnect();
-  }, []);
+  }, [path]);
 
   useEffect(() => {
     document.body.classList.toggle('no-scroll', menuOpen);
@@ -51,13 +53,13 @@ export function Navbar() {
   return (
     <header className={`nav ${scrolled ? 'nav--solid' : ''} ${menuOpen ? 'nav--open' : ''}`}>
       <div className="nav__inner container">
-        <a href="#inicio" className="nav__brand" onClick={go('inicio')} aria-label="Poison Donuts — início">
+        <a href="/" className="nav__brand" onClick={go('inicio')} aria-label="Poison Donuts, página inicial">
           <Logo size={38} />
         </a>
 
         <nav className="nav__links" aria-label="Principal">
           {navItems.map((n) => (
-            <a key={n.id} href={`#${n.id}`} onClick={go(n.id)} className={active === n.id ? 'is-active' : ''} aria-current={active === n.id ? 'true' : undefined}>
+            <a key={n.id} href={n.id === 'inicio' ? '/' : `/#${n.id}`} onClick={go(n.id)} className={active === n.id ? 'is-active' : ''} aria-current={active === n.id ? 'true' : undefined}>
               {n.label}
             </a>
           ))}
@@ -78,7 +80,7 @@ export function Navbar() {
       <div id="mobile-menu" className="mobile-menu" hidden={!menuOpen}>
         <nav aria-label="Menu móvel">
           {navItems.map((n, i) => (
-            <a key={n.id} href={`#${n.id}`} onClick={go(n.id)} style={{ animationDelay: `${i * 40}ms` }} className={active === n.id ? 'is-active' : ''}>
+            <a key={n.id} href={n.id === 'inicio' ? '/' : `/#${n.id}`} onClick={go(n.id)} style={{ animationDelay: `${i * 40}ms` }} className={active === n.id ? 'is-active' : ''}>
               {n.label}
             </a>
           ))}

@@ -21,7 +21,7 @@ export function Logo({ size = 40, showText = true }: { size?: number; showText?:
       </svg>
       {showText && (
         <span className="logo__text">
-          <span className="logo__poison">POISON</span>
+          <span className="logo__poison">POISON</span>{' '}
           <span className="logo__donuts">DONUTS</span>
         </span>
       )}
