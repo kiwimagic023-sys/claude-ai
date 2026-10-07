@@ -1,13 +1,18 @@
 import { useEffect, useRef, useState } from 'react';
-import { brandLogo, heroVideo, store } from '../config/site';
+import { brandLogo, heroVideo, products, store } from '../config/site';
 import { scrollToId } from '../lib/scroll';
+import { Donut } from './Donut';
 import { IconArrow, IconStar } from './Icons';
 import { usePedirAgora } from './Navbar';
 import { Starfield } from './Starfield';
 
 const reducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+const flyers = ['simpson', 'kinder-bueno', 'oreo'].map((id) => products.find((p) => p.id === id)!);
+const taglines = ['Donuts gigantes.', 'Recheios irresistíveis.', 'Sabores de outra galáxia.'];
+
 export function Hero() {
+  const section = useRef<HTMLElement>(null);
   const video = useRef<HTMLVideoElement>(null);
   const pedir = usePedirAgora();
   // versão mais leve do vídeo no celular
@@ -15,6 +20,8 @@ export function Hero() {
   const [playing, setPlaying] = useState(() => !reducedMotion());
   // estrelas animadas só em telas grandes (no celular o vídeo já dá movimento e economiza bateria)
   const [stars] = useState(() => window.matchMedia('(min-width: 768px)').matches);
+  // animação ligada à rolagem (desligada para quem pediu "reduzir movimento")
+  const [scrolly] = useState(() => !reducedMotion());
 
   useEffect(() => {
     const v = video.current;
@@ -35,66 +42,109 @@ export function Hero() {
     return () => io.disconnect();
   }, [playing]);
 
+  // progresso da rolagem dentro da capa (0 = topo, 1 = fim da animação) na variável CSS --p
+  useEffect(() => {
+    const el = section.current;
+    if (!el || !scrolly) return;
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const range = el.offsetHeight - window.innerHeight;
+      const p = range > 0 ? Math.min(1, Math.max(0, -el.getBoundingClientRect().top / range)) : 0;
+      el.style.setProperty('--p', p.toFixed(4));
+      el.dataset.past = String(p > 0.35);
+    };
+    const schedule = () => { if (!raf) raf = requestAnimationFrame(update); };
+    update();
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule);
+    return () => {
+      window.removeEventListener('scroll', schedule);
+      window.removeEventListener('resize', schedule);
+      cancelAnimationFrame(raf);
+    };
+  }, [scrolly]);
+
   return (
-    <section id="inicio" className="hero" aria-labelledby="hero-title">
-      <video
-        ref={video}
-        className="hero__video"
-        poster={heroVideo.poster}
-        muted
-        loop
-        playsInline
-        autoPlay={playing}
-        preload="auto"
-        aria-hidden="true"
-      >
-        <source src={sources.webm} type="video/webm" />
-        <source src={sources.mp4} type="video/mp4" />
-      </video>
-      <div className="hero__shade" aria-hidden="true" />
-      {stars && <Starfield density={0.00008} />}
-
-      <div className="container hero__content">
-        <img className="hero__logo" src={brandLogo.large} width={128} height={128} alt="" fetchPriority="high" />
-        <p className="eyebrow hero__eyebrow">
-          <span className="pulse-dot" /> Barra Shopping · Rio de Janeiro
-        </p>
-        <h1 id="hero-title" className="hero__brand">
-          <span className="hero__brand-top">Poison</span>
-          <span className="hero__brand-bottom">Donuts</span>
-        </h1>
-        <div className="hero__panel">
-        <p className="hero__slogan">Os melhores donuts da galáxia</p>
-        <p className="hero__lead">Donuts gigantes, recheios irresistíveis e sabores para deixar qualquer momento muito mais gostoso.</p>
-        <div className="hero__ctas">
-          <button className="btn btn--primary btn--lg" onClick={pedir}>
-            Pedir agora <IconArrow />
-          </button>
-          <button className="btn btn--ghost btn--lg" onClick={() => scrollToId('cardapio')}>Ver cardápio</button>
+    <section id="inicio" ref={section} className={`hero ${scrolly ? 'hero--scrolly' : ''}`} aria-labelledby="hero-title">
+      <div className="hero__sticky">
+        <div className="hero__media">
+          <video
+            ref={video}
+            className="hero__video"
+            poster={heroVideo.poster}
+            muted
+            loop
+            playsInline
+            autoPlay={playing}
+            preload="auto"
+            aria-hidden="true"
+          >
+            <source src={sources.webm} type="video/webm" />
+            <source src={sources.mp4} type="video/mp4" />
+          </video>
+          <div className="hero__shade" aria-hidden="true" />
         </div>
-        <ul className="hero__stats" aria-label="Destaques">
-          <li><IconStar className="star" width={18} height={18} /> <strong>{store.rating.toLocaleString('pt-BR')}</strong> <span>· {store.ratingCountLabel}</span></li>
-          <li><strong>🚀 Delivery</strong> <span>e retirada</span></li>
-          <li><strong>🎉 Eventos</strong> <span>e encomendas</span></li>
-        </ul>
-        </div>
-      </div>
+        {stars && <Starfield density={0.00008} />}
 
-      <button
-        className="hero__toggle icon-btn"
-        onClick={() => setPlaying((p) => !p)}
-        aria-label={playing ? 'Pausar vídeo de fundo' : 'Reproduzir vídeo de fundo'}
-      >
-        {playing ? (
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1" /><rect x="14" y="5" width="4" height="14" rx="1" /></svg>
-        ) : (
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 5v14l12-7z" /></svg>
+        {scrolly && (
+          <div className="hero__flyers" aria-hidden="true">
+            {flyers.map((p, i) => (
+              <div key={p.id} className={`hero__flyer hero__flyer--${i + 1}`}>
+                <Donut art={p.art} seed={`hero-${p.id}`} />
+              </div>
+            ))}
+          </div>
         )}
-      </button>
 
-      <button className="hero__scroll" onClick={() => scrollToId('por-que')} aria-label="Rolar para conhecer a Poison Donuts">
-        <span />
-      </button>
+        <div className="container hero__content">
+          <img className="hero__logo" src={brandLogo.large} width={128} height={128} alt="" fetchPriority="high" />
+          <p className="eyebrow hero__eyebrow">
+            <span className="pulse-dot" /> Barra Shopping · Rio de Janeiro
+          </p>
+          <h1 id="hero-title" className="hero__brand">
+            <span className="hero__brand-top">Poison</span>
+            <span className="hero__brand-bottom">Donuts</span>
+          </h1>
+          <div className="hero__panel">
+            <p className="hero__slogan">Os melhores donuts da galáxia</p>
+            <p className="hero__lead">Donuts gigantes, recheios irresistíveis e sabores para deixar qualquer momento muito mais gostoso.</p>
+            <div className="hero__ctas">
+              <button className="btn btn--primary btn--lg" onClick={pedir}>
+                Pedir agora <IconArrow />
+              </button>
+              <button className="btn btn--ghost btn--lg" onClick={() => scrollToId('cardapio')}>Ver cardápio</button>
+            </div>
+            <ul className="hero__stats" aria-label="Destaques">
+              <li><IconStar className="star" width={18} height={18} /> <strong>{store.rating.toLocaleString('pt-BR')}</strong> <span>· {store.ratingCountLabel}</span></li>
+              <li><strong>🚀 Delivery</strong> <span>e retirada</span></li>
+              <li><strong>🎉 Eventos</strong> <span>e encomendas</span></li>
+            </ul>
+          </div>
+        </div>
+
+        {scrolly && (
+          <ul className="hero__taglines" aria-hidden="true">
+            {taglines.map((t, i) => <li key={t} className={`hero__tagline hero__tagline--${i + 1}`}>{t}</li>)}
+          </ul>
+        )}
+
+        <button
+          className="hero__toggle icon-btn"
+          onClick={() => setPlaying((p) => !p)}
+          aria-label={playing ? 'Pausar vídeo de fundo' : 'Reproduzir vídeo de fundo'}
+        >
+          {playing ? (
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1" /><rect x="14" y="5" width="4" height="14" rx="1" /></svg>
+          ) : (
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 5v14l12-7z" /></svg>
+          )}
+        </button>
+
+        <button className="hero__scroll" onClick={() => scrollToId('por-que')} aria-label="Rolar para conhecer a Poison Donuts">
+          <span />
+        </button>
+      </div>
     </section>
   );
 }
