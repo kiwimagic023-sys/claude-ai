@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://toripizza.com.br/sitemap.xml
