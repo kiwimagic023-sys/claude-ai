@@ -275,7 +275,7 @@ address { font-style: normal; }
   .intro__tilt { width: min(94vw, 58vh); }
   .intro__captions { bottom: calc(96px + env(safe-area-inset-bottom)); }
   .intro__final { bottom: calc(92px + env(safe-area-inset-bottom)); }
-  .intro__hint { bottom: calc(96px + env(safe-area-inset-bottom)); }
+  .intro__hint { bottom: auto; top: calc(var(--nav-h) + 74px); }
 }
 
 /* ---------- destaques ---------- */
