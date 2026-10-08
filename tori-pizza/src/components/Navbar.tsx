@@ -59,7 +59,7 @@ export function Navbar() {
 
         <div className="nav__actions">
           <a className="icon-btn" href={`tel:+${store.phoneE164}`} aria-label={`Ligar para a pizzaria: ${store.phoneDisplay}`}><IconPhone width={20} height={20} /></a>
-          <a className="btn btn--primary btn--sm nav__cta" href={whatsappUrl()} target="_blank" rel="noopener noreferrer"><IconWhatsApp width={18} height={18} /> Pedir</a>
+          <a className="btn btn--primary btn--sm nav__cta" href={whatsappUrl()} target="_blank" rel="noopener noreferrer"><IconWhatsApp width={18} height={18} /> WhatsApp</a>
           <button className="icon-btn nav__burger" onClick={() => setMenuOpen((o) => !o)} aria-expanded={menuOpen} aria-controls="mobile-menu" aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'}>
             {menuOpen ? <IconClose /> : <IconMenu />}
           </button>
@@ -76,7 +76,7 @@ export function Navbar() {
         </nav>
         <div className="mobile-menu__ctas">
           <a className="btn btn--ghost btn--lg btn--block" href={`tel:+${store.phoneE164}`}><IconPhone /> Ligar {store.phoneDisplay}</a>
-          <a className="btn btn--primary btn--lg btn--block" href={whatsappUrl()} target="_blank" rel="noopener noreferrer"><IconWhatsApp /> Pedir pelo WhatsApp</a>
+          <a className="btn btn--primary btn--lg btn--block" href={whatsappUrl()} target="_blank" rel="noopener noreferrer"><IconWhatsApp /> Falar no WhatsApp</a>
         </div>
       </div>
     </header>

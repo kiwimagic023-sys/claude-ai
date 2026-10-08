@@ -10,9 +10,9 @@ export function Footer() {
   return (
     <footer className="footer">
       <div className="footer__cta container">
-        <h2>Bateu a fome? <em>Peça a sua agora.</em></h2>
+        <h2>Venha conhecer a <em>Toripizza</em>.</h2>
         <div className="footer__cta-btns">
-          <a className="btn btn--whatsapp btn--lg" href={whatsappUrl()} target="_blank" rel="noopener noreferrer"><IconWhatsApp /> Pedir pelo WhatsApp</a>
+          <a className="btn btn--whatsapp btn--lg" href={whatsappUrl()} target="_blank" rel="noopener noreferrer"><IconWhatsApp /> Fale com a gente</a>
           <a className="btn btn--ghost btn--lg" href={links.googleMaps} target="_blank" rel="noopener noreferrer"><IconPin /> Como chegar</a>
         </div>
       </div>

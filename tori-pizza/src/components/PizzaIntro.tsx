@@ -9,7 +9,7 @@ import { IconPizza, IconWhatsApp } from './Icons';
 
 /** frases que aparecem durante a montagem (uma por etapa) */
 const captions = [
-  { title: 'Tudo começa com a massa.', text: 'Aberta na mão, na hora do pedido.' },
+  { title: 'Tudo começa com a massa.', text: 'Aberta na mão, uma por uma.' },
   { title: 'Molho de tomate da casa.', text: 'Espalhado com calma, do centro até a borda.' },
   { title: 'Queijo sem economia.', text: 'Mussarela cobrindo cada pedaço.' },
   { title: 'Calabresa, cebola e azeitona.', text: 'O recheio que a cidade inteira conhece.' },
@@ -316,7 +316,7 @@ export function PizzaIntro() {
           <h1 id="intro-title">Toripizza</h1>
           <p>{store.slogan} Em Toritama - PE.</p>
           <div className="intro__ctas">
-            <a className="btn btn--primary btn--lg" href={whatsappUrl()} target="_blank" rel="noopener noreferrer"><IconWhatsApp /> Pedir pelo WhatsApp</a>
+            <a className="btn btn--primary btn--lg" href={whatsappUrl()} target="_blank" rel="noopener noreferrer"><IconWhatsApp /> Fale com a gente</a>
             <button className="btn btn--ghost btn--lg" onClick={() => scrollToId('cardapio')}><IconPizza /> Ver cardápio</button>
           </div>
         </div>

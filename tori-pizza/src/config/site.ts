@@ -86,7 +86,7 @@ export const links = {
   googleReviews: 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('Tori pizza Toritama'),
 };
 
-export const whatsappDefaultMessage = 'Olá, Toripizza! Quero fazer um pedido.';
+export const whatsappDefaultMessage = 'Olá, Toripizza! Vi o site e gostaria de mais informações.';
 
 /** HORÁRIOS — o indicador "Aberto/Fechado" do site usa estes dados. Fechado às terças. */
 export const hours: DayHours[] = [
@@ -122,7 +122,7 @@ export const photos = {
 export const navItems = [
   { id: 'inicio', label: 'Início' },
   { id: 'cardapio', label: 'Cardápio' },
-  { id: 'como-pedir', label: 'Como pedir' },
+  { id: 'atendimento', label: 'Atendimento' },
   { id: 'fotos', label: 'Fotos' },
   { id: 'avaliacoes', label: 'Avaliações' },
   { id: 'localizacao', label: 'Localização' },
@@ -243,8 +243,8 @@ export const products: Product[] = [
 export const features = [
   { emoji: '🔥', title: 'Saindo do forno', text: 'Massa assada na hora, com borda dourada e muito queijo.' },
   { emoji: '🍕', title: 'Vários sabores', text: 'Meio a meio ou dividida em mais sabores na mesma pizza, salgados e doces.' },
-  { emoji: '🛵', title: 'Delivery', text: 'Entrega sem contato em Toritama. Peça pelo WhatsApp.' },
-  { emoji: '🏠', title: 'No local ou retirada', text: 'Coma na pizzaria ou retire o pedido na porta.' },
+  { emoji: '🛵', title: 'Delivery', text: 'Entrega sem contato em Toritama.' },
+  { emoji: '🏠', title: 'No local ou retirada', text: 'Coma na pizzaria ou retire na porta.' },
 ];
 
 // ---------- Galeria ----------

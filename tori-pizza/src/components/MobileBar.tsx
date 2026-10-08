@@ -13,7 +13,7 @@ export function MobileBar() {
         <span>Cardápio</span>
       </button>
       <button onClick={() => scrollToId('localizacao')}><IconPin /><span>Local</span></button>
-      <a href={whatsappUrl()} target="_blank" rel="noopener noreferrer" className="mobile-bar__wa"><IconWhatsApp /><span>Pedir</span></a>
+      <a href={whatsappUrl()} target="_blank" rel="noopener noreferrer" className="mobile-bar__wa"><IconWhatsApp /><span>Contato</span></a>
     </nav>
   );
 }

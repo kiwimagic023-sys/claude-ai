@@ -3,9 +3,9 @@ import { IconWhatsApp } from './Icons';
 
 export function WhatsAppButton() {
   return (
-    <a className="wa-float" href={whatsappUrl()} target="_blank" rel="noopener noreferrer" aria-label="Pedir pelo WhatsApp da Toripizza">
+    <a className="wa-float" href={whatsappUrl()} target="_blank" rel="noopener noreferrer" aria-label="Falar com a Toripizza no WhatsApp">
       <IconWhatsApp width={30} height={30} />
-      <span className="wa-float__label">Peça pelo WhatsApp</span>
+      <span className="wa-float__label">Fale com a gente</span>
     </a>
   );
 }

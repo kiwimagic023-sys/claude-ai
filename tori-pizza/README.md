@@ -2,7 +2,7 @@
 
 Site vitrine da **Toripizza**, pizzaria em Toritama - PE (R. Limoeiro, 12, Lot. Deus é Fiel).
 Mostra o cardápio, como pedir (delivery, retirada e no local), fotos, avaliações e localização.
-Não é loja virtual: os pedidos são feitos pelo WhatsApp ou por telefone.
+Não é loja virtual: não há carrinho, preços nem pagamento. O contato é pelo WhatsApp, por telefone ou na própria pizzaria.
 
 Feito com **React + TypeScript + Vite**, no mesmo formato do site da Poison Donuts (pasta raiz deste repositório).
 Visual futurista em vermelho e vermelho claro, com fontes Space Grotesk e JetBrains Mono hospedadas no próprio site.

@@ -14,7 +14,7 @@ export function Menu() {
         <header className="section-head" data-reveal>
           <p className="eyebrow">// cardápio</p>
           <h2 id="menu-title" className="section-title">Escolha seus <em>sabores</em>.</h2>
-          <p className="section-lead">Peça uma pizza de um sabor só ou divida em vários. Os valores e o cardápio completo do dia você recebe pelo WhatsApp.</p>
+          <p className="section-lead">Pizza de um sabor só ou dividida em vários. Conheça os sabores e veja como cada um é feito.</p>
         </header>
 
         <div className="tabs" role="tablist" aria-label="Categorias">
@@ -44,7 +44,6 @@ export function Menu() {
                       <summary>Como é feita</summary>
                       <p>{p.howTo}</p>
                     </details>
-                    <a className="menu-card__cta" href={whatsappUrl(`Olá, Toripizza! Quero pedir uma pizza de ${p.name}.`)} target="_blank" rel="noopener noreferrer"><IconWhatsApp width={18} height={18} /> Pedir este sabor</a>
                   </div>
                 </li>
               ))}
