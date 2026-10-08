@@ -6,12 +6,12 @@ export function Gallery() {
     <section id="fotos" className="section gallery" aria-labelledby="gallery-title">
       <div className="container">
         <header className="section-head" data-reveal>
-          <p className="eyebrow">Fotos</p>
+          <p className="eyebrow">// fotos reais</p>
           <h2 id="gallery-title" className="section-title">Dá água na <em>boca</em></h2>
         </header>
         <ul className="gallery__grid">
           {gallery.map((g, i) => (
-            <li key={g.image} className={`gallery__item ${g.shape ? `gallery__item--${g.shape}` : ''}`} data-reveal style={{ transitionDelay: `${i * 60}ms` }}>
+            <li key={g.image} className={`gallery__item ${g.shape ? `gallery__item--${g.shape}` : ''}`} data-reveal data-tilt style={{ transitionDelay: `${i * 60}ms` }}>
               <img src={g.image} alt={`Pizza da Toripizza: ${g.title}`} loading="lazy" decoding="async" />
               <span className="gallery__caption">{g.title}</span>
             </li>

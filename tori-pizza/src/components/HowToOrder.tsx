@@ -13,12 +13,12 @@ export function HowToOrder() {
     <section id="como-pedir" className="section order" aria-labelledby="order-title">
       <div className="container">
         <header className="section-head" data-reveal>
-          <p className="eyebrow">Como pedir</p>
+          <p className="eyebrow">// como pedir</p>
           <h2 id="order-title" className="section-title">Do jeito que for <em>melhor pra você</em></h2>
         </header>
         <ul className="order__grid">
           {ways.map(({ icon: Icon, title, text }, i) => (
-            <li key={title} className="order-card" data-reveal style={{ transitionDelay: `${i * 80}ms` }}>
+            <li key={title} className="order-card" data-reveal data-tilt style={{ transitionDelay: `${i * 80}ms` }}>
               <span className="order-card__icon"><Icon width={28} height={28} /></span>
               <h3>{title}</h3>
               <p>{text}</p>

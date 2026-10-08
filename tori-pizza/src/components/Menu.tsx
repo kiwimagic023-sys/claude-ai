@@ -12,8 +12,8 @@ export function Menu() {
     <section id="cardapio" className="section menu" aria-labelledby="menu-title">
       <div className="container">
         <header className="section-head" data-reveal>
-          <p className="eyebrow">Cardápio</p>
-          <h2 id="menu-title" className="section-title">Escolha seus <em>sabores</em></h2>
+          <p className="eyebrow">// cardápio</p>
+          <h2 id="menu-title" className="section-title">Escolha seus <em>sabores</em>.</h2>
           <p className="section-lead">Peça uma pizza de um sabor só ou divida em vários. Os valores e o cardápio completo do dia você recebe pelo WhatsApp.</p>
         </header>
 
@@ -34,12 +34,16 @@ export function Menu() {
           ) : (
             <ul className="menu__grid">
               {items.map((p) => (
-                <li key={p.id} className="menu-card">
+                <li key={p.id} className="menu-card" data-tilt>
                   {p.image && <img className="menu-card__img" src={p.image} alt={`Foto de uma pizza da Toripizza com o sabor ${p.name}`} loading="lazy" decoding="async" />}
                   <div className="menu-card__body">
                     <h3>{p.name} {p.bestSeller && <span className="badge">Favorito</span>}</h3>
                     <p>{p.description}</p>
                     <ul className="chips" aria-label="Ingredientes">{p.ingredients.map((i) => <li key={i}>{i}</li>)}</ul>
+                    <details className="howto">
+                      <summary>Como é feita</summary>
+                      <p>{p.howTo}</p>
+                    </details>
                     <a className="menu-card__cta" href={whatsappUrl(`Olá, Toripizza! Quero pedir uma pizza de ${p.name}.`)} target="_blank" rel="noopener noreferrer"><IconWhatsApp width={18} height={18} /> Pedir este sabor</a>
                   </div>
                 </li>

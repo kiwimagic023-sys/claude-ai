@@ -18,7 +18,10 @@ export const useScrollProgress = (ref: RefObject<HTMLElement | null>, onProgress
     const update = () => {
       raf = 0;
       const range = el.offsetHeight - window.innerHeight;
-      const p = range > 0 ? Math.min(1, Math.max(0, -el.getBoundingClientRect().top / range)) : 0;
+      const top = el.getBoundingClientRect().top;
+      // elemento mais baixo que a tela: progresso enquanto ele atravessa a tela
+      const raw = range > 0 ? -top / range : (window.innerHeight - top) / (window.innerHeight + el.offsetHeight);
+      const p = Math.min(1, Math.max(0, raw));
       el.style.setProperty('--p', p.toFixed(4));
       onProgress?.(p);
     };

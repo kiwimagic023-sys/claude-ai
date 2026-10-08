@@ -19,7 +19,7 @@ export function Reviews() {
     <section id="avaliacoes" className="section reviews" aria-labelledby="reviews-title">
       <div className="container">
         <header className="section-head" data-reveal>
-          <p className="eyebrow">Avaliações</p>
+          <p className="eyebrow">// avaliações</p>
           <h2 id="reviews-title" className="section-title">Quem prova, <em>volta</em></h2>
         </header>
         <div className="rating-hero" data-reveal>

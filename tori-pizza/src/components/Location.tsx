@@ -14,7 +14,7 @@ export function Location() {
     <section id="localizacao" className="section location" aria-labelledby="location-title">
       <div className="container">
         <header className="section-head" data-reveal>
-          <p className="eyebrow">Localização</p>
+          <p className="eyebrow">// localização</p>
           <h2 id="location-title" className="section-title">Venha nos <em>visitar</em></h2>
         </header>
         <div className="location__grid" data-reveal>

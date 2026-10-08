@@ -46,7 +46,7 @@ export function Navbar() {
       <div className="nav__inner container">
         <a href="/" className="nav__brand" onClick={go('inicio')} aria-label="Toripizza, página inicial">
           <Logo size={42} />
-          <span className="nav__name">Toripizza</span>
+          <span className="nav__name">TORIPIZZA<small>pizzaria</small></span>
         </a>
 
         <nav className="nav__links" aria-label="Principal">

@@ -29,6 +29,8 @@ export interface Product {
   category: CategoryId;
   description: string;
   ingredients: string[];
+  /** como a pizza é montada (texto curto mostrado no card) */
+  howTo: string;
   /** foto onde o sabor aparece */
   image?: string;
   bestSeller?: boolean;
@@ -111,6 +113,8 @@ export const photos = {
   chocolateRomeuJulieta: '/images/pizza-chocolate-romeu-e-julieta.webp',
   carneDeSolChocolate: '/images/pizza-carne-de-sol-chocolate.webp',
   meioAMeioChocolate: '/images/pizza-meio-a-meio-chocolate.webp',
+  /** pizza inteira recortada (sem fundo) */
+  cutoutCalabresaPortuguesa: '/images/cutout-calabresa-portuguesa.webp',
 };
 
 // ---------- Navegação ----------
@@ -150,6 +154,7 @@ export const categories: Category[] = [
 export const products: Product[] = [
   {
     id: 'calabresa',
+    howTo: 'Massa aberta na hora, molho de tomate, mussarela, calabresa fatiada e cebola em rodelas. Assada até a borda dourar e finalizada com orégano.',
     name: 'Calabresa',
     category: 'salgadas',
     description: 'A clássica: calabresa fatiada, muito queijo, cebola e orégano.',
@@ -159,6 +164,7 @@ export const products: Product[] = [
   },
   {
     id: 'portuguesa',
+    howTo: 'Sobre o molho e a mussarela vão presunto picado, ovo cozido, tomate, cebola, milho e ervilha. Forno quente e orégano por cima.',
     name: 'Portuguesa',
     category: 'salgadas',
     description: 'Presunto, ovo, cebola, tomate, milho e ervilha sobre bastante queijo.',
@@ -167,6 +173,7 @@ export const products: Product[] = [
   },
   {
     id: 'carne-de-sol',
+    howTo: 'A carne de sol é cozida, desfiada e refogada. Vai sobre a mussarela e, depois do forno, recebe fios de cream cheese.',
     name: 'Carne de sol com cream cheese',
     category: 'salgadas',
     description: 'Carne desfiada bem temperada e fios generosos de cream cheese.',
@@ -176,6 +183,7 @@ export const products: Product[] = [
   },
   {
     id: 'frango',
+    howTo: 'Frango cozido, desfiado e temperado, espalhado sobre a mussarela. Sai do forno com fios de cream cheese e orégano.',
     name: 'Frango com cream cheese',
     category: 'salgadas',
     description: 'Frango desfiado e temperado com fios de cream cheese por cima.',
@@ -184,6 +192,7 @@ export const products: Product[] = [
   },
   {
     id: 'quatro-queijos',
+    howTo: 'Mussarela de base, gorgonzola em pedaços e outros queijos por cima. Fica no forno até tudo derreter junto.',
     name: 'Quatro queijos',
     category: 'salgadas',
     description: 'Para quem ama queijo: mussarela, gorgonzola e outros queijos derretidos.',
@@ -192,6 +201,7 @@ export const products: Product[] = [
   },
   {
     id: 'bacon',
+    howTo: 'Bacon em cubos dourado antes, espalhado sobre a mussarela e coberto com cheddar cremoso antes de ir ao forno.',
     name: 'Bacon com cheddar',
     category: 'salgadas',
     description: 'Bacon crocante e cheddar cremoso.',
@@ -200,6 +210,7 @@ export const products: Product[] = [
   },
   {
     id: 'chocolate-confetes',
+    howTo: 'A massa é assada com uma camada fina de queijo, recebe chocolate cremoso ainda quente e é coberta de confetes.',
     name: 'Chocolate com confetes',
     category: 'doces',
     description: 'Chocolate cremoso coberto de confetes coloridos.',
@@ -209,6 +220,7 @@ export const products: Product[] = [
   },
   {
     id: 'romeu-e-julieta',
+    howTo: 'Mussarela derretida no forno e, por cima, fatias de goiabada que amolecem com o calor.',
     name: 'Romeu e Julieta',
     category: 'doces',
     description: 'A dupla perfeita: queijo derretido e goiabada.',
@@ -217,6 +229,7 @@ export const products: Product[] = [
   },
   {
     id: 'chocolate-creme',
+    howTo: 'Massa assada, chocolate cremoso espalhado e fios de creme branco desenhados por cima.',
     name: 'Chocolate com creme',
     category: 'doces',
     description: 'Chocolate cremoso com fios de creme branco por cima.',
