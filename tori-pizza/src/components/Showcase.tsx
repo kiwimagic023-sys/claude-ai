@@ -23,8 +23,8 @@ export function Showcase() {
             <h2 id="showcase-title" className="section-title">Saiu do forno <em>assim</em>.</h2>
             <p className="section-lead">Esta é uma pizza real da Toripizza, meio calabresa, meio portuguesa. Sem filtro, do jeito que chega na sua mesa.</p>
             <ul className="showcase__stats">
-              <li><strong>8</strong><span>fatias</span></li>
-              <li><strong>2+</strong><span>sabores por pizza</span></li>
+              <li><strong>20</strong><span>sabores</span></li>
+              <li><strong>3</strong><span>tamanhos</span></li>
               <li><strong>4,6★</strong><span>no Google</span></li>
             </ul>
           </div>

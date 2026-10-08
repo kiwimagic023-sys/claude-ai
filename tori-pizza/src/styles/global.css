@@ -291,7 +291,7 @@ address { font-style: normal; }
 @media (max-width: 480px) { .features__grid { grid-template-columns: 1fr; } }
 
 /* cartões de vidro com borda neon (usados em várias seções) */
-.feature, .menu-card, .order-card, .review-card, .location__card {
+.feature, .order-card, .review-card, .location__card {
   border-radius: var(--radius);
   background: linear-gradient(160deg, rgba(255, 90, 95, 0.09), rgba(255, 42, 47, 0.02) 50%, rgba(0, 0, 0, 0.2));
   border: 1px solid var(--line);
@@ -379,14 +379,29 @@ address { font-style: normal; }
 .tab.is-active { color: #fff; border-color: var(--red); background: rgba(255, 42, 47, 0.18); box-shadow: 0 0 24px -6px var(--red), 0 0 0 1px rgba(255, 123, 127, 0.3) inset; }
 .menu__panel { animation: fade-up 0.5s var(--ease); }
 @keyframes fade-up { from { opacity: 0; transform: translateY(14px); } }
-.menu__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px; }
-.menu-card { position: relative; display: flex; flex-direction: column; overflow: hidden; }
-.menu-card__img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; transition: transform 0.6s var(--ease); }
-.menu-card:hover .menu-card__img { transform: scale(1.05); }
-.menu-card__body { padding: 20px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
-.menu-card h3 { font-size: 1.3rem; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-.menu-card p { color: var(--muted); font-size: 0.95rem; }
-.badge { font-family: var(--font-mono); font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.14em; padding: 4px 8px; border-radius: 6px; background: var(--red); color: #fff; box-shadow: 0 0 14px -2px var(--red); }
+.menu__list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.menu-item {
+  position: relative; display: flex; gap: 16px; padding: 20px; border-radius: var(--radius);
+  background: linear-gradient(160deg, rgba(255, 90, 95, 0.08), rgba(255, 42, 47, 0.02) 50%, rgba(0, 0, 0, 0.2));
+  border: 1px solid var(--line); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  animation: fade-up 0.5s var(--ease) backwards;
+}
+.menu-item__num {
+  flex: none; width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center;
+  font-family: var(--font-mono); font-weight: 700; font-size: 0.95rem; color: var(--red-light);
+  border: 1px solid var(--line-strong); background: rgba(255, 42, 47, 0.1); box-shadow: 0 0 24px -10px var(--red);
+}
+.menu-item__body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 8px; }
+.menu-item h3 { font-size: 1.25rem; }
+.menu-item__body > p { color: var(--muted); font-size: 0.93rem; }
+.menu-item__img { flex: none; align-self: flex-start; width: 96px; height: 96px; border-radius: 50%; object-fit: cover; border: 2px solid var(--line-strong); box-shadow: 0 0 30px -8px var(--red); transition: transform 0.5s var(--ease); }
+.menu-item:hover .menu-item__img { transform: rotate(-12deg) scale(1.06); }
+.menu-item__prices { display: flex; gap: 8px; margin: 2px 0 0; }
+.menu-item__prices div { padding: 4px 10px; border-radius: 8px; border: 1px solid var(--line); }
+.menu-item__prices dt { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.menu-item__prices dd { margin: 0; font-weight: 700; }
+@media (max-width: 860px) { .menu__list { grid-template-columns: 1fr; } }
+@media (max-width: 480px) { .menu-item { padding: 16px; gap: 12px; } .menu-item__img { width: 72px; height: 72px; } .menu-item__num { width: 38px; height: 38px; font-size: 0.85rem; } }
 .chips { display: flex; flex-wrap: wrap; gap: 6px; }
 .chips li { font-family: var(--font-mono); font-size: 0.72rem; padding: 3px 9px; border-radius: 6px; border: 1px solid var(--line); color: var(--red-soft); background: rgba(255, 42, 47, 0.06); }
 .howto { border-top: 1px dashed var(--line); padding-top: 10px; }
@@ -395,8 +410,6 @@ address { font-style: normal; }
 .howto summary::before { content: '+'; display: grid; place-items: center; width: 18px; height: 18px; border-radius: 5px; border: 1px solid var(--line-strong); transition: transform 0.3s; }
 .howto[open] summary::before { content: '−'; }
 .howto p { margin-top: 8px; font-size: 0.9rem; animation: fade-up 0.35s var(--ease); }
-.menu-card__cta { margin-top: auto; padding-top: 6px; display: inline-flex; align-items: center; gap: 8px; font-weight: 700; color: var(--whatsapp); }
-.menu-card__cta:hover { text-decoration: underline; }
 .menu__empty { text-align: center; padding: 48px 24px; border-radius: var(--radius); border: 1px dashed var(--line-strong); display: grid; gap: 20px; justify-items: center; color: var(--muted); font-size: 1.1rem; }
 
 /* ---------- como pedir ---------- */

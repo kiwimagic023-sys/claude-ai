@@ -12,7 +12,7 @@ const captions = [
   { title: 'Tudo começa com a massa.', text: 'Aberta na mão, uma por uma.' },
   { title: 'Molho de tomate da casa.', text: 'Espalhado com calma, do centro até a borda.' },
   { title: 'Queijo sem economia.', text: 'Mussarela cobrindo cada pedaço.' },
-  { title: 'Calabresa, cebola e azeitona.', text: 'O recheio que a cidade inteira conhece.' },
+  { title: 'Recheio caprichado.', text: 'Calabresa, cebola e azeitona por cima.' },
   { title: 'Forno bem quente.', text: 'A borda doura e o queijo derrete.' },
   { title: 'Orégano para finalizar.', text: 'O cheirinho que chega antes da pizza.' },
   { title: 'Cortada em 8 fatias.', text: 'Do jeito certo para dividir.' },

@@ -21,8 +21,12 @@ Na Vercel, crie um projeto apontando para este repositório com **Root Directory
 ## Onde editar
 
 Tudo fica em **`src/config/site.ts`**: telefone, endereço, horários (fechado às terças), sabores do cardápio,
-fotos, galeria e avaliações. Os sabores foram identificados pelas fotos do Instagram: confirme nomes e ingredientes
-com a pizzaria. Inclua apenas avaliações reais.
+fotos, galeria e avaliações. Inclua apenas avaliações reais.
+
+O cardápio segue o cardápio oficial da pizzaria (17 sabores salgados e 3 doces, nos tamanhos pequena, média e grande).
+Os preços estão guardados em `prices`, mas ficam escondidos porque o site é uma vitrine: para mostrar, mude
+`showPrices` para `true`. O texto "Como é feita" de cada sabor é de apresentação; revise com a pizzaria.
+A descrição da Siciliana (camarão) estava parcialmente coberta na foto do cardápio: confirme os ingredientes.
 
 Fotos ficam em `public/images/`.
 
