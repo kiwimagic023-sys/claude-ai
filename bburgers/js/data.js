@@ -54,6 +54,18 @@ window.IMAGENS = {
 };
 
 /* ---------------------------------------------------------------------
+   CLIPES (vídeo realista) – deixe "" para usar o hambúrguer em camadas.
+   • hero: vídeo MP4/WebM da montagem/desmontagem do burger. Ele avança
+     e volta conforme o scroll. Dica: exporte com muitos keyframes
+     (ffmpeg -g 1) para o scrub ficar liso.
+   • Galeria e cardápio também aceitam .mp4/.webm nos caminhos de IMAGENS:
+     tocam mudos, em loop, só quando aparecem na tela.
+   --------------------------------------------------------------------- */
+window.CLIPES = {
+  hero: { src: "", poster: "" }   // ex.: { src: "video/burger-explode.mp4", poster: "img/burger.jpg" }
+};
+
+/* ---------------------------------------------------------------------
    OPÇÃO ALTERNATIVA: sequência de frames em canvas (mais realista).
    1) Exporte os frames: img/frames/frame_001.jpg ... frame_120.jpg
    2) Troque enabled para true e ajuste count / path.

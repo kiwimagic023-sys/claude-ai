@@ -25,9 +25,20 @@
   /** Troca o placeholder por uma imagem real quando houver caminho em IMAGENS. */
   function applyImage(ph, src, alt) {
     if (!src) return;
-    const img = new Image();
-    img.src = src; img.alt = alt || ''; img.loading = 'lazy'; img.decoding = 'async';
-    ph.appendChild(img); ph.classList.add('has-img');
+    let el;
+    if (/\.(mp4|webm)(\?.*)?$/i.test(src)) {
+      // Clipe curto: toca mudo em loop só quando está visível (parado se "reduzir movimento")
+      el = document.createElement('video');
+      el.src = src; el.muted = true; el.loop = true; el.playsInline = true; el.preload = 'metadata';
+      el.setAttribute('aria-label', alt || '');
+      if (!reduceMotion && 'IntersectionObserver' in window) {
+        new IntersectionObserver(es => es.forEach(e => e.isIntersecting ? el.play().catch(() => {}) : el.pause()), { threshold: .25 }).observe(el);
+      }
+    } else {
+      el = new Image();
+      el.src = src; el.alt = alt || ''; el.loading = 'lazy'; el.decoding = 'async';
+    }
+    ph.appendChild(el); ph.classList.add('has-img');
   }
 
   /* ---------- 2. CONTEÚDO DINÂMICO ---------- */
@@ -159,6 +170,15 @@
     frames[0].onload = () => drawFrame(0);
   }
 
+  // Opção: vídeo realista da capa que avança/volta com o scroll (CLIPES.hero em data.js)
+  const C = window.CLIPES || {}, heroVid = $('#heroVideo');
+  if (C.hero && C.hero.src) {
+    heroVid.src = C.hero.src; if (C.hero.poster) heroVid.poster = C.hero.poster;
+    heroVid.hidden = false; rig.style.display = 'none'; $('.halo').style.display = 'none';
+  }
+  const useVideo = !heroVid.hidden;
+  const seekVideo = p => { if (heroVid.duration) heroVid.currentTime = p * heroVid.duration; };
+
   if (animate) {
     gsap.registerPlugin(ScrollTrigger);
     ScrollTrigger.config({ ignoreMobileResize: true });
@@ -177,7 +197,7 @@
         trigger: '.hero', start: 'top top',
         end: isMobile ? '+=190%' : '+=260%',
         pin: true, scrub: 1, anticipatePin: 1,
-        onUpdate: self => { if (F.enabled) drawFrame(self.progress); },
+        onUpdate: self => { if (F.enabled) drawFrame(self.progress); if (useVideo) seekVideo(self.progress); },
         onLeave: () => gsap.to('#scrollHint', { opacity: 0 })
       }
     });
