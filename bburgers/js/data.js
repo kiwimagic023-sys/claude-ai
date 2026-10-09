@@ -37,20 +37,22 @@ window.IMAGENS = {
   logo: "",
   // Camadas do hambúrguer (PNG sem fundo, todas com a MESMA largura)
   camadas: {
-    "pao-cima":  "",
-    "queijo":    "",
-    "bacon":     "",
-    "carne":     "",
-    "tomate":    "",
-    "alface":    "",
-    "pao-baixo": ""
+    "pao-cima":  "img/camada-pao-cima.png",
+    "bacon":     "img/camada-bacon.png",
+    "tomate":    "img/camada-tomate.png",
+    "carne":     "img/camada-carne.png",
+    "alface":    "img/camada-alface.png",
+    "pao-baixo": "img/camada-pao-baixo.png"
+    // Quer o queijo cheddar como camada separada? Adicione "queijo": "img/..." aqui
+    // e uma linha igual em CAMADAS (abaixo), na posição certa.
   },
+
   sobre: "",
   // Fotos dos itens do cardápio pela "id" do item
   itens: {
     // "chedao": "img/chedao.png",
   },
-  galeria: ["", "", "", "", "", "", "", ""]
+  galeria: ["img/burger-neon.jpg", "img/burger-classico.jpg", "", "", "", "", "", ""]
 };
 
 /* ---------------------------------------------------------------------
@@ -132,14 +134,14 @@ window.EXTRAS = [
 ];
 
 /* Textos das etapas da animação (ordem: de cima para baixo) */
+/* ar = altura / largura da imagem da camada (usado para empilhar na proporção certa) */
 window.CAMADAS = [
-  { id: "pao-cima",  rotulo: "CAMADA: pão de cima",     texto: "Pão brioche macio" },
-  { id: "queijo",    rotulo: "CAMADA: queijo cheddar",  texto: "Cheddar derretido" },
-  { id: "bacon",     rotulo: "CAMADA: bacon",           texto: "Bacon crocante" },
-  { id: "carne",     rotulo: "CAMADA: carne",           texto: "Blend bovino 150g" },
-  { id: "tomate",    rotulo: "CAMADA: tomate",          texto: "Tomate fresco" },
-  { id: "alface",    rotulo: "CAMADA: alface",          texto: "Alface crocante" },
-  { id: "pao-baixo", rotulo: "CAMADA: pão de baixo",    texto: "Base artesanal do dia" }
+  { id: "pao-cima",  ar: 0.38, rotulo: "CAMADA: pão de cima",  texto: "Pão brioche macio" },
+  { id: "bacon",     ar: 0.35, rotulo: "CAMADA: bacon",        texto: "Bacon crocante" },
+  { id: "tomate",    ar: 0.30, rotulo: "CAMADA: tomate",       texto: "Tomate fresco" },
+  { id: "carne",     ar: 0.30, rotulo: "CAMADA: carne",        texto: "Blend bovino 150g" },
+  { id: "alface",    ar: 0.52, rotulo: "CAMADA: alface",       texto: "Alface crocante" },
+  { id: "pao-baixo", ar: 0.34, rotulo: "CAMADA: pão de baixo", texto: "Base artesanal do dia" }
 ];
 
 /* Miniaturas da capa (Linha Premium) */

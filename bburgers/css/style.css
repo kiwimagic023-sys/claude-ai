@@ -96,10 +96,10 @@ h2{font-size:clamp(2rem,5vw,3.6rem);margin-bottom:1.2rem}
 .halo{position:absolute;left:50%;top:50%;width:90%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(30,144,255,.38),rgba(30,144,255,0) 65%);filter:blur(6px)}
 .floor-shadow{position:absolute;left:50%;bottom:2%;width:56%;height:7%;transform:translateX(-50%);background:radial-gradient(ellipse,rgba(0,0,0,.85),transparent 70%);filter:blur(6px)}
 .rig{position:absolute;inset:0;transform-style:preserve-3d;will-change:transform}
-.layer{position:absolute;left:25%;width:50%;height:13%;top:0;transform-style:preserve-3d;will-change:transform;filter:drop-shadow(0 10px 14px rgba(0,0,0,.55))}
+.layer{position:absolute;top:0;transform-style:preserve-3d;will-change:transform;filter:drop-shadow(0 10px 14px rgba(0,0,0,.55))}
 .layer .ph{width:100%;height:100%;border-radius:22px;font-size:.62rem}
-.layer .ph.has-img{overflow:visible}
-.layer .ph img{object-fit:contain}
+.layer .ph.has-img{overflow:visible;border-radius:0}
+.layer .ph img{object-fit:contain;border-radius:0}
 .tag{position:absolute;top:50%;display:flex;align-items:center;gap:.4rem;white-space:nowrap;opacity:0;font-weight:600;font-size:.8rem;color:#fff;pointer-events:none}
 .tag i{display:block;width:clamp(16px,2.4vw,36px);height:1px;background:var(--blue);box-shadow:0 0 8px var(--blue);position:relative}
 .tag i::after{content:"";position:absolute;top:-3px;width:7px;height:7px;border-radius:50%;background:var(--blue);box-shadow:0 0 10px var(--blue)}
@@ -134,11 +134,11 @@ h2{font-size:clamp(2rem,5vw,3.6rem);margin-bottom:1.2rem}
   .eyebrow{display:none}
   .stage{height:100%;width:min(100%,420px);min-height:300px}
   .stage-wrap{height:auto;min-height:0}
-  .layer{left:9%;width:82%}
   .tag{font-size:.66rem}
   .tag i{display:none}
   .tag span{padding:.12rem .45rem}
-  .tag.r,.tag.l{left:auto;right:4%;margin:0;transform:translateY(-50%);flex-direction:row}
+  .tag.r{left:100%;margin-left:.2rem}
+  .tag.l{right:100%;margin-right:.2rem}
   .layer .ph{font-size:.46rem;align-items:center;justify-content:flex-start;text-align:left;padding:.3rem .6rem}
   .thumbs{gap:.4rem;padding-bottom:1rem}
   .thumb{width:62px;font-size:.6rem}

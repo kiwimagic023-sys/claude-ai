@@ -125,10 +125,26 @@
   /* ---------- 3. CAPA: HAMBÚRGUER QUE DESMONTA COM O SCROLL ---------- */
   const rig = $('#burgerRig');
   const N = window.CAMADAS.length;
-  const LAYER_H = 13;                         // altura de cada camada (% do palco)
-  const asmTop = i => 21 + i * 9.6;           // posição montado   (% do palco)
-  const expTop = i => 2 + i * 13.6;           // posição explodido (% do palco)
-  const toPct = top => top / LAYER_H * 100;   // converte para yPercent
+  const rigEl = rig;
+  let lay = { asm: [], exp: [] };
+
+  /** Calcula (em px) a posição de cada camada montada e "explodida", a partir do tamanho do palco. */
+  function computeLayout() {
+    const Sw = rigEl.clientWidth, Sh = rigEl.clientHeight, ars = window.CAMADAS.map(c => c.ar);
+    const sumAr = ars.reduce((a, b) => a + b, 0);
+    const lw = Math.min((isMobile ? .78 : .56) * Sw, .84 * Sh / sumAr);   // largura das camadas
+    const hs = ars.map(a => a * lw);
+    // montado: camadas sobrepostas, centralizadas na vertical
+    const OV = .7, asm = []; let y = 0;
+    hs.forEach((h, i) => { asm.push(y); y += h * OV; });
+    const asmH = asm[asm.length - 1] + hs[hs.length - 1];
+    const a0 = (Sh - asmH) / 2 + Sh * .03;
+    // explodido: camadas separadas ocupando ~94% da altura
+    const gap = Math.max(0, (.94 * Sh - hs.reduce((a, b) => a + b, 0)) / (N - 1)), exp = []; y = .03 * Sh;
+    hs.forEach(h => { exp.push(y); y += h + gap; });
+    lay = { lw, hs, asm: asm.map(v => v + a0), exp, left: (Sw - lw) / 2 };
+    layers.forEach((el, i) => { el.style.width = lw + 'px'; el.style.height = hs[i] + 'px'; el.style.left = lay.left + 'px'; });
+  }
 
   const layers = window.CAMADAS.map((c, i) => {
     const el = document.createElement('div');
@@ -139,8 +155,10 @@
     rig.appendChild(el);
     return el;
   });
-  if (hasGsap) gsap.set(layers, { yPercent: i => toPct(asmTop(i)) });
-  else layers.forEach((el, i) => { el.style.transform = `translateY(${toPct(asmTop(i))}%)`; });
+  computeLayout();
+  const setAssembled = () => layers.forEach((el, i) => { el.style.transform = `translateY(${lay.asm[i]}px)`; });
+  if (hasGsap) gsap.set(layers, { y: i => lay.asm[i] }); else setAssembled();
+  addEventListener('resize', () => { computeLayout(); if (!hasGsap) setAssembled(); });
 
   // Miniaturas (Linha Premium)
   const thumbsEl = $('#thumbs');
@@ -181,6 +199,8 @@
 
   if (animate) {
     gsap.registerPlugin(ScrollTrigger);
+    ScrollTrigger.addEventListener('refreshInit', computeLayout);
+    gsap.set(layers, { y: i => lay.asm[i] });
     ScrollTrigger.config({ ignoreMobileResize: true });
 
     // Partículas (gergelim, molho, migalhas, bacon) – menos no celular
@@ -194,7 +214,7 @@
     const tl = gsap.timeline({
       defaults: { ease: 'none' },
       scrollTrigger: {
-        trigger: '.hero', start: 'top top',
+        trigger: '.hero', start: 'top top', invalidateOnRefresh: true,
         end: isMobile ? '+=190%' : '+=260%',
         pin: true, scrub: 1, anticipatePin: 1,
         onUpdate: self => { if (F.enabled) drawFrame(self.progress); if (useVideo) seekVideo(self.progress); },
@@ -206,7 +226,7 @@
     layers.forEach((el, i) => {
       const mid = (N - 1) / 2, dir = i < mid ? -1 : 1;
       tl.to(el, {
-        yPercent: toPct(expTop(i)),
+        y: () => lay.exp[i],
         z: (mid - i) * 40,
         rotationX: -14 + i * 3,
         rotationY: dir * (6 + i * 2.5),
