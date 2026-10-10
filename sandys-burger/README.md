@@ -107,7 +107,7 @@ Lighthouse (build local, celular simulado em rede lenta): desempenho 96, acessib
 SEO 100; LCP 2,0 s, CLS 0.
 
 - Frames carregam em ordem "grossa → fina": a animação funciona mesmo com poucos frames e vai ficando mais suave.
-- A abertura espera as fontes, o tempo mínimo (1,7 s) e 60% dos frames, com limite de 9 s em conexões lentas.
+- A abertura espera as fontes, o tempo mínimo (1,4 s) e 60% dos frames, com limite de 9 s em conexões lentas.
 - Celular usa o conjunto menor de frames (e também quem ativou "economia de dados").
 - O mapa de Unidades é um iframe do Google Maps (precisa de internet); o botão "Abrir no Google Maps" fica sempre visível.
 

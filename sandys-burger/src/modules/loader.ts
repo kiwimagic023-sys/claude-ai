@@ -9,7 +9,7 @@ interface LoaderOptions {
   reduceMotion: boolean;
 }
 
-const MIN_MS = 1700; // tempo mínimo com o letreiro aceso antes de abrir
+const MIN_MS = 1400; // tempo mínimo com o letreiro aceso antes de abrir (+ ~1,1 s de abertura = ~2,5 s)
 const MAX_MS = 9000; // limite: abre mesmo que a conexão esteja lenta
 const READY_RATIO = 0.6; // fração dos frames necessária para abrir
 
@@ -67,7 +67,7 @@ export function runLoader({ seq, fontsReady, reduceMotion }: LoaderOptions): Pro
     // barra de progresso (a suavização fica por conta da transição CSS; nunca anda para trás)
     const updateBar = (): void => {
       const elapsed = performance.now() - started;
-      const target = Math.min(seq.ratio / READY_RATIO, elapsed / (MIN_MS * 0.92), 1);
+      const target = Math.min(seq.ratio / READY_RATIO, elapsed / (MIN_MS * 0.9), 1);
       shown = Math.max(shown, target);
       el.bar.style.transform = `scaleX(${shown.toFixed(3)})`;
     };
@@ -94,14 +94,14 @@ export function runLoader({ seq, fontsReady, reduceMotion }: LoaderOptions): Pro
 
       // a tela abre: feixe de luz, linhas e as duas metades se afastam
       const t = gsap.timeline({ onComplete: done });
-      t.to(el.center, { scale: 1.08, duration: 0.4, ease: 'power2.out' }, 0)
-        .to(el.beam, { opacity: 1, scaleX: 1, duration: 0.5, ease: 'power3.out' }, 0.05)
-        .to(el.lines, { opacity: 1, scaleX: 1, duration: 0.55, stagger: 0.045, ease: 'power3.out' }, 0.12)
-        .to(el.center, { opacity: 0, scale: 1.3, duration: 0.4, ease: 'power2.in' }, 0.32)
-        .to(el.dust, { opacity: 0, duration: 0.4 }, 0.4)
-        .to(el.top, { yPercent: -101, duration: 0.85, ease: 'power4.inOut' }, 0.48)
-        .to(el.bottom, { yPercent: 101, duration: 0.85, ease: 'power4.inOut' }, 0.48)
-        .to([el.beam, ...el.lines], { opacity: 0, duration: 0.45, ease: 'power2.in' }, 0.7);
+      t.to(el.center, { scale: 1.08, duration: 0.35, ease: 'power2.out' }, 0)
+        .to(el.beam, { opacity: 1, scaleX: 1, duration: 0.42, ease: 'power3.out' }, 0.04)
+        .to(el.lines, { opacity: 1, scaleX: 1, duration: 0.45, stagger: 0.04, ease: 'power3.out' }, 0.08)
+        .to(el.center, { opacity: 0, scale: 1.3, duration: 0.32, ease: 'power2.in' }, 0.26)
+        .to(el.dust, { opacity: 0, duration: 0.35 }, 0.3)
+        .to(el.top, { yPercent: -101, duration: 0.74, ease: 'power4.inOut' }, 0.38)
+        .to(el.bottom, { yPercent: 101, duration: 0.74, ease: 'power4.inOut' }, 0.38)
+        .to([el.beam, ...el.lines], { opacity: 0, duration: 0.4, ease: 'power2.in' }, 0.62);
     };
 
     // abre quando: tempo mínimo + fontes + frames suficientes (ou tempo máximo)
