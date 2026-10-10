@@ -1,0 +1,162 @@
+/* ---------- abertura: letreiro de neon ---------- */
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  color: #fff;
+}
+
+.loader__panel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  background: var(--bg);
+  will-change: transform;
+}
+
+.loader__panel--top {
+  top: 0;
+  height: 50.4%;
+}
+
+.loader__panel--bottom {
+  bottom: 0;
+  height: 50.4%;
+}
+
+/* partículas rosa: pontos animados só com transform/opacity (rodam no compositor) */
+.loader__dust {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.loader__dust i {
+  position: absolute;
+  left: var(--x);
+  bottom: -12px;
+  width: calc(var(--s) * 3);
+  height: calc(var(--s) * 3);
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff 0%, #ff2e9a 45%, rgba(255, 46, 154, 0) 72%);
+  opacity: 0;
+  animation: dust-rise var(--t) linear var(--d) infinite;
+}
+
+@keyframes dust-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  15% {
+    opacity: 0.85;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-105vh);
+  }
+}
+
+.loader__center {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  justify-items: center;
+  gap: 20px;
+}
+
+.loader__logo {
+  position: relative;
+  width: clamp(116px, 26vw, 176px);
+  aspect-ratio: 1;
+}
+
+.loader__logo svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* tubo apagado */
+.loader__logo-off {
+  opacity: 0.17;
+  filter: saturate(0.5);
+}
+
+/* tubo aceso */
+.loader__logo-on {
+  opacity: 0;
+  filter: drop-shadow(0 0 4px #ff2e9a) drop-shadow(0 0 16px rgba(255, 46, 154, 0.9)) drop-shadow(0 0 40px rgba(123, 47, 247, 0.6));
+}
+
+.loader__hint {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+.loader__bar {
+  width: min(260px, 62vw);
+  height: 3px;
+  overflow: hidden;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.loader__bar span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--grad);
+  box-shadow: 0 0 14px rgba(255, 46, 154, 0.9);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.28s linear;
+}
+
+/* feixe de luz no centro e linhas de luz que abrem a tela */
+.loader__beam {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  z-index: 2;
+  height: 2px;
+  opacity: 0;
+  background: linear-gradient(90deg, transparent, #fff 14%, #ff2e9a 50%, #fff 86%, transparent);
+  box-shadow:
+    0 0 22px 4px rgba(255, 46, 154, 0.85),
+    0 0 80px 14px rgba(123, 47, 247, 0.6);
+  transform: translateY(-50%) scaleX(0);
+}
+
+.loader__lines i {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  height: 1px;
+  opacity: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 46, 154, 0.95), rgba(139, 77, 255, 0.95), transparent);
+  box-shadow: 0 0 12px rgba(255, 46, 154, 0.7);
+  transform: scaleX(0);
+}
+
+.loader__lines i:nth-child(1) {
+  top: 38%;
+}
+.loader__lines i:nth-child(2) {
+  top: 44%;
+}
+.loader__lines i:nth-child(3) {
+  top: 50%;
+}
+.loader__lines i:nth-child(4) {
+  top: 56%;
+}
+.loader__lines i:nth-child(5) {
+  top: 62%;
+}

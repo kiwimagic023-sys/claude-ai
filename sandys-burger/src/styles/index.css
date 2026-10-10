@@ -1,0 +1,23 @@
+@import './fonts.css';
+@import './tokens.css';
+@import './components.css';
+@import './nav.css';
+@import './loader.css';
+@import './hero.css';
+@import './sections.css';
+
+/* fumaça e partículas ficam num canvas fixo atrás de todo o conteúdo */
+#fx {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+main,
+.footer {
+  position: relative;
+  z-index: 1;
+}
