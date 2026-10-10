@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Sandy's Burger | Old Fashioned Burger · Ultra Smash no Rio de Janeiro</title>
+    <meta
+      name="description"
+      content="Sandy's Burger: old fashioned burger com ultra smash de blend Angus, American Cheese derretido e pão tostadinho na manteiga. 4 unidades no Rio. Peça pelo WhatsApp."
+    />
+    <meta name="theme-color" content="#0B0710" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="robots" content="index, follow" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content="Sandy's Burger" />
+    <meta property="og:title" content="Sandy's Burger | Smash. Na chapa. Do jeito certo." />
+    <meta property="og:description" content="Old fashioned burger com ultra smash de blend Angus, American Cheese derretido e pão tostadinho na manteiga. Peça pelo WhatsApp." />
+    <meta property="og:image" content="./og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Sandy's Burger: hambúrguer ultra smash" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Sandy's Burger | Smash. Na chapa. Do jeito certo." />
+    <meta name="twitter:description" content="Old fashioned burger com ultra smash de blend Angus. Peça pelo WhatsApp." />
+    <meta name="twitter:image" content="./og-image.jpg" />
+
+    <meta name="geo.region" content="BR-RJ" />
+    <meta name="geo.placename" content="Barra da Tijuca, Rio de Janeiro" />
+
+    <link rel="icon" type="image/svg+xml" href="./brand/logo.svg" />
+    <link rel="icon" type="image/png" sizes="48x48" href="./favicon-48.png" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+    <link rel="manifest" href="./site.webmanifest" />
+
+    <!-- primeiro frame do hero (desktop e celular) já em download enquanto o resto carrega -->
+    <link rel="preload" as="image" type="image/webp" href="./frames/d/f0001.webp" media="(min-width: 768px)" fetchpriority="high" />
+    <link rel="preload" as="image" type="image/webp" href="./frames/m/f0001.webp" media="(max-width: 767px)" fetchpriority="high" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Restaurant",
+        "name": "Sandy's Burger",
+        "slogan": "Old Fashioned Burger · Ultra Smash",
+        "description": "Hamburgueria com ultra smash de blend Angus, American Cheese e pão tostadinho na manteiga.",
+        "servesCuisine": ["Hambúrguer", "Smash burger"],
+        "telephone": "+55 21 99396-3901",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Av. Marechal Henrique Lott, 120, Loja 109 (térreo), Paço das Rosas, Barra da Tijuca",
+          "addressLocality": "Rio de Janeiro",
+          "addressRegion": "RJ",
+          "postalCode": "22631-370",
+          "addressCountry": "BR"
+        },
+        "sameAs": ["https://www.instagram.com/sandysburger/", "https://linktr.ee/sandysburgerbr"]
+      }
+    </script>
+
+    <noscript><style>.loader{display:none!important}.js-only{display:none!important}.hero__canvas{display:none!important}</style></noscript>
+  </head>
+
+  <body>
+    <!-- ===================== SPRITE DE ÍCONES ===================== -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none" aria-hidden="true">
+      <symbol id="logo-s" viewBox="0 0 120 120">
+        <circle cx="60" cy="60" r="53" fill="none" stroke="#FF2E9A" stroke-width="8.5" />
+        <circle cx="60" cy="60" r="53" fill="none" stroke="#FFFFFF" stroke-width="4" />
+        <g fill="#FFFFFF" stroke="#FF2E9A" stroke-width="3.4" stroke-linejoin="round" paint-order="stroke">
+          <path d="M54.34 88Q46.81 88 43.48 84.25Q40.15 80.50 40.15 72.31L40.15 66.94L51.03 66.94L51.03 73.81Q51.03 75.72 51.61 76.80Q52.18 77.88 53.62 77.88Q55.12 77.88 55.70 77Q56.28 76.13 56.28 74.13Q56.28 71.59 55.78 69.89Q55.28 68.19 54.04 66.64Q52.81 65.09 50.62 63.03L45.68 58.34Q40.15 53.13 40.15 46.41Q40.15 39.38 43.42 35.69Q46.68 32 52.87 32Q60.43 32 63.61 36.03Q66.78 40.06 66.78 48.28L55.59 48.28L55.59 44.50Q55.59 43.38 54.95 42.75Q54.31 42.13 53.22 42.13Q51.90 42.13 51.29 42.86Q50.68 43.59 50.68 44.75Q50.68 45.91 51.31 47.25Q51.93 48.59 53.78 50.34L60.12 56.44Q62.03 58.25 63.62 60.27Q65.22 62.28 66.18 64.95Q67.15 67.63 67.15 71.47Q67.15 79.22 64.29 83.61Q61.43 88 54.34 88Z" />
+          <path d="M77.48 52.38L71.98 52.38L68.85 32.50L79.85 32.50Z" />
+        </g>
+      </symbol>
+
+      <symbol id="i-burger" viewBox="0 0 24 24"><path d="M3.5 11.2C3.5 7.4 7.3 4.8 12 4.8s8.5 2.6 8.5 6.4z" /><path d="M9 8h.01M12.2 7h.01M15.2 8.2h.01" /><path d="M3 14.2c1.4 1.2 2.9 1.2 4.3 0s2.9-1.2 4.3 0 2.9 1.2 4.3 0 2.9-1.2 4.3 0" /><path d="M4 17.2h16v.8a2.8 2.8 0 0 1-2.8 2.8H6.8A2.8 2.8 0 0 1 4 18z" /></symbol>
+      <symbol id="i-angus" viewBox="0 0 24 24"><path d="M5.2 9.4c1.1-3.2 4.2-5 7.8-4.5 3.7.5 6.3 3.1 5.8 6.9-.5 3.7-3.7 6.7-7.3 7.6-3.4.8-6.9-1-7.7-4.4-.4-1.7-.2-4 1.4-5.6z" /><circle cx="12.6" cy="11.6" r="2.3" /><path d="M15.6 7.6c.8.2 1.5.7 1.9 1.3" /></symbol>
+      <symbol id="i-smash" viewBox="0 0 24 24"><rect x="5" y="3.5" width="14" height="4.2" rx="1.6" /><path d="M12 7.7v2.6" /><path d="M9.8 8.8 12 11l2.2-2.2" /><path d="M3 17.2c0-1.7 4-3 9-3s9 1.3 9 3-4 3-9 3-9-1.3-9-3z" /><path d="M8 17.4h.01M12 18.2h.01M16 17.4h.01" /></symbol>
+      <symbol id="i-delivery" viewBox="0 0 24 24"><circle cx="6" cy="17.2" r="2.7" /><circle cx="18.2" cy="17.2" r="2.7" /><path d="M8.7 17.2h6.8l2.4-8.4h-3.2" /><path d="M14 8.8l-.9-3H11" /><rect x="2.4" y="6.8" width="7.4" height="6.2" rx="1.2" /><path d="M6.1 6.8v6.2" /></symbol>
+      <symbol id="i-cheese" viewBox="0 0 24 24"><path d="M3.8 5.6h16.4v8.4c0 1-.8 1.6-1.6 1.6s-1.6.7-1.6 2v1.5c0 .8-.6 1.4-1.3 1.4s-1.3-.6-1.3-1.4V17c0-.8-.6-1.4-1.3-1.4s-1.3.6-1.3 1.4v1.2c0 .8-.6 1.3-1.3 1.3s-1.3-.5-1.3-1.3v-2c0-.6-.4-1-1-1H5.4c-1 0-1.6-.7-1.6-1.6z" /><circle cx="8.6" cy="9.4" r="1.1" /><circle cx="15.2" cy="10.8" r="1.4" /><path d="M11.6 12.6h.01" /></symbol>
+      <symbol id="i-chef" viewBox="0 0 24 24"><path d="M7.6 14.6V19h8.8v-4.4" /><path d="M6.4 14.6a3.7 3.7 0 0 1-1-7 3.9 3.9 0 0 1 6.6-2 3.9 3.9 0 0 1 6.6 2 3.7 3.7 0 0 1-1 7z" /><path d="M7.6 17h8.8" /></symbol>
+      <symbol id="i-bun" viewBox="0 0 24 24"><path d="M3.6 11.4c0-3.6 3.6-6.2 8.4-6.2s8.4 2.6 8.4 6.2z" /><path d="M4 11.4h16v3.1a2.6 2.6 0 0 1-2.6 2.6H6.6A2.6 2.6 0 0 1 4 14.5z" /><path d="M12 17.1c0 0-2 2.1-2 3.4a2 2 0 0 0 4 0c0-1.3-2-3.4-2-3.4z" /><path d="M8.4 8.2h.01M12 7.4h.01M15.4 8.4h.01" /></symbol>
+      <symbol id="i-combo" viewBox="0 0 24 24"><path d="M3.6 12h6.4l-1 8.2H4.6z" /><path d="M5 12V7.4M7 12V6M9 12V8" /><path d="M12.6 11.2h7.6l-1 9h-5.6z" /><path d="M17.2 11.2l.8-5.6h2.4" /><path d="M12 11.2h8.8" /></symbol>
+      <symbol id="i-beer" viewBox="0 0 24 24"><path d="M5.6 8h9.2v10.2a1.9 1.9 0 0 1-1.9 1.9H7.5a1.9 1.9 0 0 1-1.9-1.9z" /><path d="M14.8 9.6h2.2a1.7 1.7 0 0 1 1.7 1.7v2.6a1.7 1.7 0 0 1-1.7 1.7h-2.2" /><path d="M5.4 8c-.4-1.6.6-2.8 2-2.9.5-1.2 1.9-1.8 3.2-1.2 1.3-.4 2.7.5 2.8 1.9 1 .1 1.6 1 1.4 2.2" /><path d="M9 11.4v5.4M11.6 11.4v5.4" /></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4.5 12h14.5M13 6l6 6-6 6" /></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M12 7v5.2l3.2 2" /></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21.3s7-5.7 7-11.2a7 7 0 0 0-14 0c0 5.5 7 11.2 7 11.2z" /><circle cx="12" cy="10" r="2.5" /></symbol>
+      <symbol id="i-ig" viewBox="0 0 24 24"><rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5.2" /><circle cx="12" cy="12" r="4.1" /><path d="M17.4 6.6h.01" /></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24"><path d="M5 5l14 14M19 5L5 19" /></symbol>
+      <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.3-.15-1.263-.465-2.403-1.485-.888-.795-1.484-1.77-1.66-2.07-.174-.3-.019-.465.13-.615.136-.135.301-.345.451-.523.146-.181.194-.301.297-.496.1-.21.049-.375-.025-.524-.075-.15-.672-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.172-.015-.371-.015-.571-.015-.2 0-.523.074-.797.359-.273.3-1.045 1.02-1.045 2.475s1.07 2.865 1.219 3.075c.149.195 2.105 3.195 5.1 4.485.714.3 1.27.48 1.704.629.714.227 1.365.195 1.88.121.574-.091 1.767-.721 2.016-1.426.255-.705.255-1.29.18-1.425-.074-.135-.27-.21-.57-.345m-5.446 7.443h-.016c-1.77 0-3.524-.48-5.055-1.38l-.36-.214-3.75.975 1.005-3.645-.239-.375c-.99-1.576-1.516-3.391-1.516-5.26 0-5.445 4.455-9.885 9.942-9.885 2.654 0 5.145 1.035 7.021 2.91 1.875 1.859 2.909 4.35 2.909 6.99-.004 5.444-4.46 9.885-9.935 9.885M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.334.101 11.893c0 2.096.549 4.14 1.595 5.945L0 24l6.335-1.652c1.746.943 3.71 1.444 5.71 1.447h.006c6.585 0 11.946-5.336 11.949-11.896 0-3.176-1.24-6.165-3.495-8.411" /></symbol>
+      <symbol id="i-linktree" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="m13.73635 5.85251 4.00467-4.11665 2.3248 2.3808-4.20064 4.00466h5.9085v3.30473h-5.9365l4.22865 4.10766-2.3248 2.3338L12.0005 12.099l-5.74052 5.76852-2.3248-2.3248 4.22864-4.10766h-5.9375V8.12132h5.9085L3.93417 4.11665l2.3248-2.3808 4.00468 4.11665V0h3.4727zm-3.4727 10.30614h3.4727V24h-3.4727z" /></symbol>
+    </svg>
+
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+    <!-- ===================== ABERTURA (LOADING) ===================== -->
+    <div class="loader" id="loader" role="status" aria-live="polite" aria-label="Carregando o site">
+      <div class="loader__panel loader__panel--top"></div>
+      <div class="loader__panel loader__panel--bottom"></div>
+      <div class="loader__dust" aria-hidden="true"></div>
+      <div class="loader__beam" aria-hidden="true"></div>
+      <div class="loader__lines" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="loader__center">
+        <div class="loader__logo" aria-hidden="true">
+          <svg class="loader__logo-off" viewBox="0 0 120 120"><use href="#logo-s" /></svg>
+          <svg class="loader__logo-on" viewBox="0 0 120 120"><use href="#logo-s" /></svg>
+        </div>
+        <p class="loader__hint script" aria-hidden="true">esquentando a chapa…</p>
+        <div class="loader__bar" aria-hidden="true"><span></span></div>
+      </div>
+    </div>
+
+    <!-- ===================== MENU DE NAVEGAÇÃO ===================== -->
+    <header class="nav" id="nav">
+      <div class="nav__inner">
+        <a class="nav__brand" href="#inicio" aria-label="Sandy's Burger, início">
+          <svg class="nav__logo" viewBox="0 0 120 120" aria-hidden="true"><use href="#logo-s" /></svg>
+          <span class="nav__wordmark">SANDY'S<small>BURGER</small></span>
+        </a>
+
+        <nav class="nav__links" aria-label="Navegação principal">
+          <a href="#inicio" data-nav="inicio" class="is-active">INÍCIO</a>
+          <a href="#cardapio" data-nav="cardapio">CARDÁPIO</a>
+          <a href="#sobre" data-nav="sobre">SOBRE</a>
+          <a href="#unidades" data-nav="unidades">UNIDADES</a>
+          <a href="#contato" data-nav="contato">CONTATO</a>
+        </nav>
+
+        <a class="btn btn--pink nav__cta" href="https://wa.me/5521993963901?text=Ol%C3%A1!%20Quero%20fazer%20um%20pedido." target="_blank" rel="noopener">
+          PEÇA AGORA <svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow" /></svg>
+        </a>
+
+        <button class="nav__toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-mobile">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+      <div class="nav__mobile" id="menu-mobile" hidden>
+        <nav aria-label="Navegação mobile">
+          <a href="#inicio">INÍCIO</a>
+          <a href="#cardapio">CARDÁPIO</a>
+          <a href="#sobre">SOBRE</a>
+          <a href="#unidades">UNIDADES</a>
+          <a href="#contato">CONTATO</a>
+        </nav>
+        <a class="btn btn--pink btn--lg" href="https://wa.me/5521993963901?text=Ol%C3%A1!%20Quero%20fazer%20um%20pedido." target="_blank" rel="noopener">
+          PEÇA AGORA <svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow" /></svg>
+        </a>
+        <p class="nav__mobile-tag script">Para cada desculpa, uma solução.</p>
+      </div>
+    </header>
+
+    <main id="conteudo">
+      <!-- ===================== HERO ===================== -->
+      <section class="hero" id="inicio" aria-label="Sandy's Burger">
+        <div class="hero__bg" aria-hidden="true">
+          <div class="hero__glow hero__glow--pink"></div>
+          <div class="hero__glow hero__glow--purple"></div>
+        </div>
+
+        <div class="hero__inner">
+          <div class="hero__copy">
+            <div class="hero__steps">
+              <article class="step is-active" data-step="0">
+                <p class="eyebrow">Old Fashioned Burger <i>·</i> Ultra Smash</p>
+                <h1 class="display">
+                  <span class="sr-only">Sandy's Burger: </span>
+                  <span class="line" data-text="SMASH.">SMASH.</span>
+                  <span class="line" data-text="NA CHAPA.">NA CHAPA.</span>
+                  <span class="line line--grad" data-text="DO JEITO CERTO."><b>DO JEITO CERTO.</b></span>
+                </h1>
+                <p class="lead">Old fashioned burger com ultra smash de blend Angus, American Cheese derretido e pão tostadinho na manteiga.</p>
+                <div class="cta">
+                  <a class="btn btn--pink btn--lg" href="https://wa.me/5521993963901?text=Ol%C3%A1!%20Quero%20fazer%20um%20pedido." target="_blank" rel="noopener">
+                    PEÇA AGORA <svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow" /></svg>
+                  </a>
+                  <a class="btn btn--ghost btn--lg" href="#cardapio">VER CARDÁPIO</a>
+                </div>
+                <p class="proof">
+                  <svg class="icon" aria-hidden="true"><use href="#i-ig" /></svg><span><b>+7 mil</b> seguidores no Instagram</span>
+                  <i aria-hidden="true">·</i>
+                  <svg class="icon" aria-hidden="true"><use href="#i-pin" /></svg><span><b>4</b> unidades no Rio</span>
+                </p>
+              </article>
+
+              <article class="step" data-step="1" aria-hidden="true">
+                <p class="eyebrow">01 <i>—</i> A montagem</p>
+                <h2 class="display">
+                  <span class="line" data-text="CADA CAMADA">CADA CAMADA</span>
+                  <span class="line line--grad" data-text="NO SEU LUGAR."><b>NO SEU LUGAR.</b></span>
+                </h2>
+                <p class="lead">Pão tostadinho na manteiga, blend Angus prensado na chapa, American Cheese e os molhos autorais da casa. Tudo separadinho pra você ver que aqui não tem segredo.</p>
+              </article>
+
+              <article class="step" data-step="2" aria-hidden="true">
+                <p class="eyebrow">02 <i>—</i> O encontro</p>
+                <h2 class="display">
+                  <span class="line" data-text="O TIPO DE MATCH">O TIPO DE MATCH</span>
+                  <span class="line line--grad" data-text="QUE A GENTE RESPEITA."><b>QUE A GENTE RESPEITA.</b></span>
+                </h2>
+                <p class="lead">Ultra smash na chapa, crocante nas bordas, com American Cheese derretendo por cima. Simples assim, do jeito old fashioned.</p>
+              </article>
+
+              <article class="step" data-step="3" aria-hidden="true">
+                <p class="eyebrow">03 <i>—</i> Montou</p>
+                <h2 class="display">
+                  <span class="line" data-text="NÃO PASSA">NÃO PASSA</span>
+                  <span class="line line--grad" data-text="PARA O LADO."><b>PARA O LADO.</b></span>
+                </h2>
+                <p class="lead">Para cada desculpa, uma solução. A sua é um Sandy's.</p>
+                <div class="cta">
+                  <a class="btn btn--pink btn--lg" href="https://wa.me/5521993963901?text=Ol%C3%A1!%20Quero%20fazer%20um%20pedido." target="_blank" rel="noopener">
+                    PEÇA AGORA <svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow" /></svg>
+                  </a>
+                  <span class="script cta__note">Esperamos você?!</span>
+                </div>
+              </article>
+            </div>
+
+            <div class="hero__progress js-only" aria-hidden="true">
+              <span class="hero__count"><b>01</b>/04</span>
+              <div class="hero__ticks"><i class="is-on"></i><i></i><i></i><i></i></div>
+            </div>
+          </div>
+
+          <div class="hero__stage">
+            <div class="hero__ring" aria-hidden="true"></div>
+            <div class="hero__float">
+              <div class="hero__tilt" data-tilt>
+                <canvas class="hero__canvas" width="800" height="960" role="img" aria-label="Hambúrguer ultra smash que se desmonta camada por camada enquanto você rola a página"></canvas>
+                <noscript><img class="hero__fallback" src="./frames/d/f0001.webp" alt="Hambúrguer ultra smash da Sandy's Burger" width="800" height="960" /></noscript>
+              </div>
+            </div>
+            <div class="hero__pulse" aria-hidden="true"></div>
+
+            <div class="seal" data-depth="1.6" aria-label="100% blend Angus">
+              <svg class="seal__ring" viewBox="0 0 200 200" aria-hidden="true">
+                <defs><path id="seal-path" d="M100,100 m-80,0 a80,80 0 1,1 160,0 a80,80 0 1,1 -160,0" /></defs>
+                <text><textPath href="#seal-path" startOffset="0" textLength="496" lengthAdjust="spacing">100% BLEND ANGUS • 100% BLEND ANGUS •</textPath></text>
+              </svg>
+              <span class="seal__core"><b>100%</b><small>BLEND<br />ANGUS</small></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero__scroll js-only" aria-hidden="true">
+          <span class="script">role e veja ele se desmontar</span>
+          <i></i>
+        </div>
+      </section>
+
+      <!-- ===================== BARRA DE DESTAQUES ===================== -->
+      <section class="stats" aria-label="Destaques">
+        <div class="container">
+          <ul class="stats__bar" data-reveal>
+            <li>
+              <svg class="icon" aria-hidden="true"><use href="#i-burger" /></svg>
+              <p><strong>8</strong><span>BURGERS no cardápio</span></p>
+            </li>
+            <li>
+              <svg class="icon" aria-hidden="true"><use href="#i-angus" /></svg>
+              <p><strong>100%</strong><span>BLEND ANGUS</span></p>
+            </li>
+            <li>
+              <svg class="icon" aria-hidden="true"><use href="#i-smash" /></svg>
+              <p><strong>ULTRA SMASH</strong><span>na chapa</span></p>
+            </li>
+            <li>
+              <svg class="icon" aria-hidden="true"><use href="#i-delivery" /></svg>
+              <p><strong>DELIVERY</strong><span>e retirada</span></p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===================== POR QUE SANDY'S? ===================== -->
+      <section class="why section" id="sobre">
+        <div class="container">
+          <header class="section__head" data-reveal>
+            <h2 class="display display--md title-rule"><span>POR QUE <em>SANDY'S</em>?</span></h2>
+            <p class="script section__script">Para cada desculpa, uma solução.</p>
+          </header>
+
+          <ul class="why__grid">
+            <li class="card card--why" data-reveal>
+              <span class="icon-circle"><svg class="icon" aria-hidden="true"><use href="#i-angus" /></svg></span>
+              <h3>BLEND ANGUS</h3>
+              <p>Carne selecionada, prensada na chapa na hora.</p>
+            </li>
+            <li class="card card--why" data-reveal>
+              <span class="icon-circle"><svg class="icon" aria-hidden="true"><use href="#i-cheese" /></svg></span>
+              <h3>AMERICAN CHEESE</h3>
+              <p>Derretido do jeito que tem que ser.</p>
+            </li>
+            <li class="card card--why" data-reveal>
+              <span class="icon-circle"><svg class="icon" aria-hidden="true"><use href="#i-chef" /></svg></span>
+              <h3>FEITO NA CASA</h3>
+              <p>Picles, maionese e molhos autorais.</p>
+            </li>
+            <li class="card card--why" data-reveal>
+              <span class="icon-circle"><svg class="icon" aria-hidden="true"><use href="#i-bun" /></svg></span>
+              <h3>PÃO NA MANTEIGA</h3>
+              <p>Tostadinho, macio e dourado.</p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===================== CARDÁPIO ===================== -->
+      <section class="menu section" id="cardapio">
+        <div class="container">
+          <header class="section__head" data-reveal>
+            <p class="script section__script">escolhe o teu</p>
+            <h2 class="display display--md title-rule"><span>NOSSO <em>CARDÁPIO</em></span></h2>
+            <p class="section__sub">Todos com pão tostadinho na manteiga, blend Angus e American Cheese.</p>
+          </header>
+
+          <div class="tabs" role="tablist" aria-label="Tamanho do burger" data-reveal>
+            <span class="tabs__pill" aria-hidden="true"></span>
+            <button class="tabs__tab is-active" role="tab" id="tab-double" aria-selected="true" aria-controls="panel-menu" data-tier="double" type="button">
+              <b>DOUBLE</b><small>2 ultra smashs de 100g</small>
+            </button>
+            <button class="tabs__tab" role="tab" id="tab-triple" aria-selected="false" aria-controls="panel-menu" data-tier="triple" type="button" tabindex="-1">
+              <b>TRIPLE</b><small>3 ultra smashs de 150g</small>
+            </button>
+          </div>
+
+          <div class="menu__grid" id="panel-menu" role="tabpanel" aria-labelledby="tab-double" aria-live="polite"></div>
+
+          <div class="combo" data-reveal>
+            <span class="combo__icon"><svg class="icon" aria-hidden="true"><use href="#i-combo" /></svg></span>
+            <p class="combo__text"><b>Transforme em combo</b> (batata + refri)</p>
+            <p class="combo__price"><small>+</small> R$ 10,90</p>
+            <a class="btn btn--ghost" href="https://wa.me/5521993963901?text=Ol%C3%A1!%20Quero%20transformar%20meu%20pedido%20em%20combo%20(batata%20%2B%20refri)." target="_blank" rel="noopener">Quero combo</a>
+          </div>
+
+          <p class="drink" data-reveal>
+            <svg class="icon" aria-hidden="true"><use href="#i-beer" /></svg>
+            <span><b>BEBIDA</b> Chopp Brahma Zero Grau</span>
+          </p>
+        </div>
+      </section>
+
+      <!-- ===================== GALERIA ===================== -->
+      <section class="gallery section" id="galeria">
+        <div class="container">
+          <header class="section__head" data-reveal>
+            <p class="script section__script">bate o olho, bate a fome</p>
+            <h2 class="display display--md title-rule"><span>DIRETO DA <em>CHAPA</em></span></h2>
+          </header>
+
+          <ul class="gallery__grid">
+            <li class="tile tile--big" data-reveal><a href="https://www.instagram.com/sandysburger/" target="_blank" rel="noopener" aria-label="Ver no Instagram"><img src="./img/gallery/g1.webp" alt="Double Cheese da Sandy's Burger com queijo derretendo" width="800" height="800" loading="lazy" decoding="async" /><span class="tile__ig"><svg class="icon" aria-hidden="true"><use href="#i-ig" /></svg></span></a></li>
+            <li class="tile" data-reveal><a href="https://www.instagram.com/sandysburger/" target="_blank" rel="noopener" aria-label="Ver no Instagram"><img src="./img/gallery/g2.webp" alt="Triple Bacon com bacon defumado" width="600" height="600" loading="lazy" decoding="async" /><span class="tile__ig"><svg class="icon" aria-hidden="true"><use href="#i-ig" /></svg></span></a></li>
+            <li class="tile" data-reveal><a href="https://www.instagram.com/sandysburger/" target="_blank" rel="noopener" aria-label="Ver no Instagram"><img src="./img/gallery/g3.webp" alt="Detalhe do queijo American Cheese derretendo" width="600" height="600" loading="lazy" decoding="async" /><span class="tile__ig"><svg class="icon" aria-hidden="true"><use href="#i-ig" /></svg></span></a></li>
+            <li class="tile" data-reveal><a href="https://www.instagram.com/sandysburger/" target="_blank" rel="noopener" aria-label="Ver no Instagram"><img src="./img/gallery/g4.webp" alt="Double Classic com picles da casa" width="600" height="600" loading="lazy" decoding="async" /><span class="tile__ig"><svg class="icon" aria-hidden="true"><use href="#i-ig" /></svg></span></a></li>
+            <li class="tile" data-reveal><a href="https://www.instagram.com/sandysburger/" target="_blank" rel="noopener" aria-label="Ver no Instagram"><img src="./img/gallery/g5.webp" alt="Triple Salad com alface e tomate" width="600" height="600" loading="lazy" decoding="async" /><span class="tile__ig"><svg class="icon" aria-hidden="true"><use href="#i-ig" /></svg></span></a></li>
+            <li class="tile" data-reveal><a href="https://www.instagram.com/sandysburger/" target="_blank" rel="noopener" aria-label="Ver no Instagram"><img src="./img/gallery/g6.webp" alt="Combo com batata e refrigerante" width="600" height="600" loading="lazy" decoding="async" /><span class="tile__ig"><svg class="icon" aria-hidden="true"><use href="#i-ig" /></svg></span></a></li>
+          </ul>
+
+          <p class="gallery__cta" data-reveal>
+            <a class="btn btn--grad btn--lg" href="https://www.instagram.com/sandysburger/" target="_blank" rel="noopener">
+              <svg class="icon" aria-hidden="true"><use href="#i-ig" /></svg> SIGA @SANDYSBURGER
+            </a>
+          </p>
+        </div>
+      </section>
+
+      <!-- ===================== UNIDADES ===================== -->
+      <section class="units section" id="unidades">
+        <div class="container">
+          <header class="section__head" data-reveal>
+            <p class="script section__script">esperamos você?!</p>
+            <h2 class="display display--md title-rule"><span>NOSSAS <em>UNIDADES</em></span></h2>
+            <p class="section__sub">4 unidades no Rio, uma chapa sempre quente.</p>
+          </header>
+
+          <div class="units__main" data-reveal>
+            <article class="unit unit--main">
+              <span class="unit__tag">UNIDADE DESTAQUE</span>
+              <h3 class="display display--sm">BARRA DA <em>TIJUCA</em></h3>
+              <address>
+                Av. Marechal Henrique Lott, 120, Loja 109 (térreo)<br />
+                Paço das Rosas, Barra da Tijuca<br />
+                Rio de Janeiro – RJ, 22631-370
+              </address>
+              <p class="unit__open"><span class="pulse-dot" aria-hidden="true"></span> Aberto até meia-noite</p>
+              <ul class="unit__chips" aria-label="Formas de atendimento">
+                <li>No local</li>
+                <li>Retirada</li>
+                <li>Delivery</li>
+              </ul>
+              <div class="unit__actions">
+                <a class="btn btn--pink" href="https://wa.me/5521993963901?text=Ol%C3%A1!%20Quero%20fazer%20um%20pedido%20na%20unidade%20da%20Barra%20da%20Tijuca." target="_blank" rel="noopener">
+                  <svg class="icon icon--fill" aria-hidden="true"><use href="#i-wa" /></svg> PEDIR NO WHATSAPP
+                </a>
+                <a class="btn btn--ghost" href="https://www.google.com/maps/search/?api=1&query=Av.+Marechal+Henrique+Lott%2C+120%2C+Barra+da+Tijuca%2C+Rio+de+Janeiro+-+RJ%2C+22631-370" target="_blank" rel="noopener">COMO CHEGAR</a>
+              </div>
+            </article>
+
+            <div class="unit__map">
+              <div class="unit__map-fallback" aria-hidden="true">
+                <svg class="icon" aria-hidden="true"><use href="#i-pin" /></svg>
+                <span>Barra da Tijuca</span>
+              </div>
+              <iframe
+                title="Mapa da Sandy's Burger na Barra da Tijuca"
+                src="https://maps.google.com/maps?q=Av.+Marechal+Henrique+Lott%2C+120%2C+Barra+da+Tijuca%2C+Rio+de+Janeiro+-+RJ%2C+22631-370&amp;z=16&amp;output=embed"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                allowfullscreen
+              ></iframe>
+              <a class="btn btn--ghost unit__map-link" href="https://www.google.com/maps/search/?api=1&query=Av.+Marechal+Henrique+Lott%2C+120%2C+Barra+da+Tijuca%2C+Rio+de+Janeiro+-+RJ%2C+22631-370" target="_blank" rel="noopener">
+                <svg class="icon" aria-hidden="true"><use href="#i-pin" /></svg> Abrir no Google Maps
+              </a>
+            </div>
+          </div>
+
+          <p class="units__also" data-reveal>Também em:</p>
+          <ul class="units__list">
+            <li class="unit-chip" data-reveal>
+              <svg class="icon" aria-hidden="true"><use href="#i-pin" /></svg>
+              <b>COPACABANA</b>
+              <a href="https://www.google.com/maps/search/?api=1&query=Sandy%27s+Burger+Copacabana+Rio+de+Janeiro" target="_blank" rel="noopener">ver no mapa</a>
+            </li>
+            <li class="unit-chip" data-reveal>
+              <svg class="icon" aria-hidden="true"><use href="#i-pin" /></svg>
+              <b>CATETE</b>
+              <a href="https://www.google.com/maps/search/?api=1&query=Sandy%27s+Burger+Catete+Rio+de+Janeiro" target="_blank" rel="noopener">ver no mapa</a>
+            </li>
+            <li class="unit-chip" data-reveal>
+              <svg class="icon" aria-hidden="true"><use href="#i-pin" /></svg>
+              <b>NITERÓI</b>
+              <a href="https://www.google.com/maps/search/?api=1&query=Sandy%27s+Burger+Niter%C3%B3i" target="_blank" rel="noopener">ver no mapa</a>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===================== RODAPÉ ===================== -->
+    <footer class="footer" id="contato">
+      <div class="footer__strip">
+        <div class="container footer__cols">
+          <div class="footer__col">
+            <span class="footer__icon"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-wa" /></svg></span>
+            <p>
+              <small>PEÇA PELO WHATSAPP</small>
+              <a href="https://wa.me/5521993963901" target="_blank" rel="noopener">(21) 99396-3901</a>
+            </p>
+          </div>
+          <div class="footer__col">
+            <span class="footer__icon"><svg class="icon" aria-hidden="true"><use href="#i-clock" /></svg></span>
+            <p>
+              <small>HORÁRIO</small>
+              <strong>Aberto até meia-noite</strong>
+            </p>
+          </div>
+          <div class="footer__col">
+            <span class="footer__label"><small>SIGA A GENTE</small></span>
+            <ul class="footer__social">
+              <li>
+                <a href="https://www.instagram.com/sandysburger/" target="_blank" rel="noopener" aria-label="Instagram @sandysburger"><svg class="icon" aria-hidden="true"><use href="#i-ig" /></svg></a>
+              </li>
+              <li>
+                <a href="https://linktr.ee/sandysburgerbr" target="_blank" rel="noopener" aria-label="Linktree linktr.ee/sandysburgerbr"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-linktree" /></svg></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <p class="footer__legal">© Sandy's Burger <i>·</i> Para cada desculpa, uma solução.</p>
+    </footer>
+
+    <a class="wa-float" href="https://wa.me/5521993963901?text=Ol%C3%A1!%20Quero%20fazer%20um%20pedido." target="_blank" rel="noopener" aria-label="Peça pelo WhatsApp">
+      <svg class="icon icon--fill" aria-hidden="true"><use href="#i-wa" /></svg>
+      <span class="wa-float__tip">Peça pelo WhatsApp</span>
+    </a>
+
+    <canvas id="fx" aria-hidden="true"></canvas>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

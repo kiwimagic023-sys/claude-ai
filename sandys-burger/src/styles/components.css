@@ -1,0 +1,329 @@
+/* ---------- ícones ---------- */
+.icon {
+  width: 1.25em;
+  height: 1.25em;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.icon--fill {
+  fill: currentColor;
+  stroke: none;
+}
+
+/* ---------- botões ---------- */
+.btn {
+  --h: 46px;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6em;
+  min-height: var(--h);
+  padding: 0 1.55em;
+  border: 1.5px solid transparent;
+  border-radius: 999px;
+  font: 800 0.78rem/1 var(--font-body);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  isolation: isolate;
+  transition:
+    transform 0.3s var(--ease),
+    box-shadow 0.3s var(--ease),
+    background-color 0.3s,
+    border-color 0.3s,
+    color 0.3s;
+}
+
+.btn .icon {
+  width: 1.2em;
+  height: 1.2em;
+  transition: transform 0.3s var(--ease);
+}
+
+.btn:hover .icon--arrow {
+  transform: translateX(4px);
+}
+
+.btn--lg {
+  --h: 54px;
+  padding: 0 1.9em;
+  font-size: 0.84rem;
+}
+
+.btn--pink {
+  background: var(--pink);
+  color: #fff;
+  box-shadow:
+    0 8px 26px -8px rgba(255, 46, 154, 0.75),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.btn--pink::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(110deg, transparent 25%, rgba(255, 255, 255, 0.4) 50%, transparent 75%);
+  transform: translateX(-130%);
+  transition: transform 0.75s var(--ease);
+}
+
+.btn--pink:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    var(--glow-pink-strong),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.btn--pink:hover::before {
+  transform: translateX(130%);
+}
+
+.btn--pink:active,
+.btn--ghost:active,
+.btn--grad:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.btn--ghost {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.btn--ghost:hover {
+  transform: translateY(-2px);
+  border-color: var(--pink);
+  box-shadow:
+    0 0 0 1px var(--pink),
+    var(--glow-pink);
+}
+
+.btn--grad {
+  color: #fff;
+  background: var(--grad);
+  box-shadow: var(--glow-purple);
+}
+
+.btn--grad:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    var(--glow-pink-strong),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* ---------- títulos de seção ---------- */
+.section {
+  position: relative;
+  padding-block: clamp(64px, 9vw, 124px);
+  scroll-margin-top: var(--nav-h);
+}
+
+.section__head {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  margin-bottom: clamp(30px, 5vw, 56px);
+  text-align: center;
+}
+
+.section__script {
+  font-size: clamp(1.3rem, 2.6vw, 1.9rem);
+  line-height: 1.1;
+  transform: rotate(-3deg);
+}
+
+.section__sub {
+  max-width: 56ch;
+  color: var(--pink-soft);
+}
+
+.title-rule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(14px, 3vw, 36px);
+  width: 100%;
+}
+
+.title-rule::before,
+.title-rule::after {
+  content: '';
+  flex: 1;
+  max-width: 300px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(176, 124, 255, 0.6));
+}
+
+.title-rule::after {
+  transform: scaleX(-1);
+}
+
+.title-rule > span {
+  text-align: center;
+}
+
+/* ---------- cards ---------- */
+.card {
+  --mx: 50%;
+  --my: 0%;
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background:
+    radial-gradient(360px circle at var(--mx) var(--my), rgba(255, 46, 154, 0.16), transparent 62%),
+    var(--card);
+  transition:
+    transform 0.45s var(--ease),
+    border-color 0.45s,
+    box-shadow 0.45s;
+}
+
+@media (hover: hover) {
+  .card:hover {
+    transform: translateY(-9px);
+    border-color: rgba(255, 46, 154, 0.75);
+    box-shadow:
+      0 18px 50px -16px rgba(255, 46, 154, 0.5),
+      0 0 0 1px rgba(255, 46, 154, 0.25),
+      inset 0 0 30px rgba(123, 47, 247, 0.12);
+  }
+}
+
+.icon-circle {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  color: #fff;
+  background: radial-gradient(circle at 30% 25%, #9a59ff, var(--purple) 60%, #5a1fd1);
+  box-shadow:
+    0 0 0 5px rgba(123, 47, 247, 0.18),
+    var(--glow-purple);
+  transition:
+    transform 0.5s var(--ease),
+    box-shadow 0.5s;
+}
+
+.icon-circle .icon {
+  width: 34px;
+  height: 34px;
+  stroke-width: 1.5;
+}
+
+.card:hover .icon-circle {
+  transform: scale(1.08) rotate(-4deg);
+  box-shadow:
+    0 0 0 6px rgba(255, 46, 154, 0.2),
+    var(--glow-pink);
+}
+
+/* ---------- revelação ao rolar (só com JavaScript) ---------- */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.js [data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- botão flutuante do WhatsApp ---------- */
+.wa-float {
+  position: fixed;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: max(16px, env(safe-area-inset-bottom));
+  z-index: 90;
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  color: #fff;
+  background: var(--grad);
+  box-shadow:
+    var(--glow-pink),
+    0 10px 24px -6px rgba(0, 0, 0, 0.6);
+  transition:
+    transform 0.35s var(--ease),
+    box-shadow 0.35s;
+}
+
+.wa-float .icon {
+  width: 30px;
+  height: 30px;
+}
+
+.wa-float::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid var(--pink);
+  animation: wa-ping 2.6s var(--ease) infinite;
+}
+
+.wa-float:hover {
+  transform: scale(1.08) translateY(-2px);
+  box-shadow:
+    var(--glow-pink-strong),
+    0 12px 26px -6px rgba(0, 0, 0, 0.6);
+}
+
+.wa-float__tip {
+  position: absolute;
+  right: calc(100% + 12px);
+  top: 50%;
+  translate: 8px -50%;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(11, 7, 16, 0.92);
+  border: 1px solid var(--line);
+  font: 700 0.74rem/1 var(--font-body);
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.25s,
+    translate 0.25s;
+}
+
+@media (hover: hover) {
+  .wa-float:hover .wa-float__tip {
+    opacity: 1;
+    translate: 0 -50%;
+  }
+}
+
+@keyframes wa-ping {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  70%,
+  100% {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+}
+
+.loader-active .wa-float {
+  opacity: 0;
+}

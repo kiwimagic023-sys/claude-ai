@@ -1,5 +1,7 @@
 # Poison Donuts — site oficial
 
+> Este repositório também contém a landing page da **Sandy's Burger**, na pasta [`sandys-burger/`](./sandys-burger/) (projeto independente, com o próprio `package.json` e README).
+
 Site institucional da **Poison Donuts** (Barra Shopping, Barra da Tijuca, RJ): os melhores donuts da galáxia.
 Ele apresenta a loja (sabores, como os donuts são feitos, eventos, avaliações e localização). Não é uma loja virtual:
 não há carrinho, preços nem pagamento. O contato é por telefone, WhatsApp ou na própria loja.
